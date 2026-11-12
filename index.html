@@ -1,0 +1,665 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ruang Latihan</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ruang Latihan">
+<meta name="theme-color" content="#6a3fd6">
+<script src="config.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one narrow column. Home = subject sections with packet cards; quiz = question cards + sticky bottom bar; parent recap = tables. */
+:root {
+  --bg: #f4f2fb; --card: #ffffff; --ink: #231f3a; --muted: #5f5a7d; --line: #e2ddf2;
+  --pri: #6a3fd6; --pri-soft: #ede6ff; --on-pri: #ffffff;
+  --ok: #1a8a4b; --ok-soft: #e3f6ea; --bad: #c9352f; --bad-soft: #fdeceb; --warn: #8a5a00; --warn-soft: #fff3d1;
+  --sky: #dfeaff; --sun: #f2a516; --shadow: 0 1px 2px rgba(35,31,58,.06);
+  --display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13122a; --card: #1d1b38; --ink: #efedff; --muted: #aaa6cf; --line: #2f2c56;
+    --pri: #a68bff; --pri-soft: #2d2659; --on-pri: #15132b;
+    --ok: #4cc98a; --ok-soft: #173a29; --bad: #ff7b74; --bad-soft: #43201f; --warn: #f3c45a; --warn-soft: #3d3119;
+    --sky: #1f2a4f; --sun: #f7b84a; --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13122a; --card: #1d1b38; --ink: #efedff; --muted: #aaa6cf; --line: #2f2c56;
+  --pri: #a68bff; --pri-soft: #2d2659; --on-pri: #15132b;
+  --ok: #4cc98a; --ok-soft: #173a29; --bad: #ff7b74; --bad-soft: #43201f; --warn: #f3c45a; --warn-soft: #3d3119;
+  --sky: #1f2a4f; --sun: #f7b84a; --shadow: none; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.5; }
+button, input { font: inherit; color: inherit; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 18px max(16px, env(safe-area-inset-right, 0px)) 120px max(16px, env(safe-area-inset-left, 0px)); }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.15; margin: 0; text-wrap: balance; }
+.muted { color: var(--muted); }
+[hidden] { display: none !important; }
+
+/* Header */
+.head { background: var(--sky); border-radius: 24px; padding: 20px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.head > div { min-width: 0; }
+.eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.head h1 { font-size: 32px; margin: 4px 0 4px; }
+.head p { margin: 0; color: var(--muted); font-size: 16px; }
+.head svg { width: 76px; height: 76px; }
+.status { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--muted); background: var(--card); border-radius: 999px; padding: 4px 12px; }
+.status i { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+.status.ok i { background: var(--ok); } .status.warn i { background: var(--sun); } .status.bad i { background: var(--bad); }
+
+/* Home */
+.sec { margin-top: 26px; }
+.sec > h2 { font-size: 24px; margin: 0 4px 10px; display: flex; align-items: center; gap: 10px; }
+.sec > h2 .dot { width: 14px; height: 14px; border-radius: 5px; background: var(--pri); flex: 0 0 auto; }
+.bab { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow); }
+.bab h3 { font-size: 19px; margin: 0 2px 10px; }
+.bab h3 small { display: block; font-family: var(--body); font-weight: 700; font-size: 13px; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
+.pk { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.pkb { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; text-align: left; background: var(--bg); border: 2px solid var(--line); border-radius: 16px; padding: 10px 12px; cursor: pointer; -webkit-tap-highlight-color: transparent; min-height: 68px; }
+.pkb:hover, .pkb:focus-visible { border-color: var(--pri); outline: none; }
+.pkb:active { transform: scale(.98); }
+.pkb .n { width: 48px; height: 48px; border-radius: 14px; background: var(--pri-soft); color: var(--pri); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 24px; }
+.pkb b { display: block; font-family: var(--display); font-size: 18px; line-height: 1.15; }
+.pkb small { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
+.pkb small.got { color: var(--ok); }
+.empty { background: var(--card); border: 2px dashed var(--line); border-radius: 20px; padding: 22px 18px; text-align: center; color: var(--muted); }
+.empty b { display: block; color: var(--ink); font-family: var(--display); font-size: 20px; margin-bottom: 4px; }
+.foot { margin-top: 30px; text-align: center; }
+a { color: var(--pri); }
+.linkbtn { background: none; border: 0; color: var(--pri); font-weight: 800; text-decoration: underline; cursor: pointer; padding: 8px; }
+
+/* Quiz */
+.qhero { background: var(--pri); color: var(--on-pri); border-radius: 22px; padding: 18px 18px 16px; }
+.qhero .eyebrow { color: inherit; opacity: .85; }
+.qhero h1 { font-size: 26px; margin: 4px 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: rgba(255,255,255,.2); border-radius: 999px; padding: 3px 12px; font-size: 14px; font-weight: 700; }
+.back { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-weight: 800; cursor: pointer; margin-bottom: 12px; }
+h2.part { font-size: 21px; margin: 24px 4px 2px; }
+p.part { margin: 0 4px 12px; color: var(--muted); font-size: 16px; }
+.q { background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 14px; margin-bottom: 12px; }
+.q.ok { border-color: var(--ok); } .q.no { border-color: var(--bad); }
+.qh { display: grid; grid-template-columns: 34px 1fr; gap: 10px; }
+.qn { width: 34px; height: 34px; border-radius: 50%; background: var(--pri-soft); color: var(--pri); font-weight: 800; display: grid; place-items: center; font-size: 16px; }
+.qt { margin: 3px 0 10px; font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; align-items: center; gap: 12px; border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; cursor: pointer; min-height: 52px; -webkit-tap-highlight-color: transparent; position: relative; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.let { flex: 0 0 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; font-weight: 800; font-size: 15px; color: var(--muted); }
+.opt.sel { border-color: var(--pri); background: var(--pri-soft); }
+.opt.sel .let { background: var(--pri); border-color: var(--pri); color: var(--on-pri); }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .let { background: var(--ok); border-color: var(--ok); color: var(--on-pri); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .let { background: var(--bad); border-color: var(--bad); color: var(--on-pri); }
+.locked .opt { cursor: default; }
+.txt { width: 100%; border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 18px; background: var(--bg); }
+.txt:focus { outline: none; border-color: var(--pri); }
+.fb { margin-top: 10px; border-radius: 12px; padding: 10px 12px; font-size: 16px; }
+.fb.ok { background: var(--ok-soft); } .fb.no { background: var(--bad-soft); } .fb.near { background: var(--warn-soft); }
+.fb .ex { display: block; margin-top: 4px; }
+.sus { display: grid; grid-template-columns: auto 1.4em; justify-content: start; margin: 10px 0 2px 4px; font-family: var(--mono); font-size: 24px; font-weight: 700; letter-spacing: .3em; line-height: 1.35; text-align: right; }
+.sus .u { border-bottom: 3px solid var(--ink); }
+.sus .op { text-align: left; letter-spacing: 0; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); z-index: 5; }
+.bar .in { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.prog { flex: 1; min-width: 0; }
+.prog small { display: block; color: var(--muted); font-size: 14px; font-weight: 700; }
+.track { height: 9px; background: var(--pri-soft); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+.fill { height: 100%; width: 0; background: var(--pri); transition: width .25s; }
+.btn { border: 0; border-radius: 14px; padding: 13px 20px; font-size: 17px; font-weight: 800; background: var(--pri); color: var(--on-pri); cursor: pointer; white-space: nowrap; }
+.btn.ghost { background: var(--pri-soft); color: var(--pri); }
+.result { background: var(--card); border: 2px solid var(--pri); border-radius: 22px; padding: 20px 18px; margin: 14px 0; text-align: center; }
+.score { font-family: var(--display); font-size: 68px; font-weight: 800; line-height: 1; color: var(--pri); margin: 6px 0; }
+.stars { font-size: 28px; letter-spacing: 4px; }
+.msg { font-weight: 800; font-size: 19px; margin: 6px 0 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
+.box { background: var(--bg); border-radius: 12px; padding: 10px 12px; font-size: 14px; color: var(--muted); }
+.box b { display: block; font-size: 20px; color: var(--ink); }
+.save { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.acts { display: flex; gap: 10px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.modal { position: fixed; inset: 0; background: rgba(20,16,40,.5); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
+.modal.show { display: flex; }
+.dlg { background: var(--card); border-radius: 20px; padding: 20px; max-width: 380px; width: 100%; }
+.dlg h3 { font-size: 21px; margin-bottom: 6px; }
+.dlg p { margin: 0 0 16px; color: var(--muted); }
+.dlg .acts { justify-content: flex-end; }
+
+/* Parent recap */
+.rk h1 { font-size: 28px; margin-bottom: 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; margin-top: 14px; box-shadow: var(--shadow); }
+.card h2 { font-size: 20px; margin-bottom: 8px; }
+.note { font-size: 15px; color: var(--muted); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tbl th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: 6px 6px; border-bottom: 1px solid var(--line); }
+.tbl td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl td.num, .tbl th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tag { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.tag.ok { background: var(--ok-soft); color: var(--ok); } .tag.no { background: var(--bad-soft); color: var(--bad); } .tag.mid { background: var(--warn-soft); color: var(--warn); } .tag.gray { background: var(--bg); color: var(--muted); }
+.hist { display: flex; flex-direction: column; gap: 8px; }
+.hrow { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; cursor: pointer; text-align: left; width: 100%; }
+.hrow b { font-family: var(--display); font-size: 17px; }
+.hrow small { display: block; color: var(--muted); font-size: 13px; }
+.hrow .sc { font-family: var(--display); font-weight: 800; font-size: 24px; color: var(--pri); }
+.det { margin-top: 8px; padding: 10px 12px; border-left: 4px solid var(--bad); background: var(--bad-soft); border-radius: 8px; font-size: 15px; }
+.det.okd { border-color: var(--ok); background: var(--ok-soft); }
+@media (max-width: 420px) { .head svg { width: 56px; height: 56px; } .head h1 { font-size: 27px; } .score { font-size: 56px; } }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } .pkb:active { transform: none; } }
+.pinf{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.pinf input{font:inherit;font-size:20px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;width:160px;letter-spacing:4px}.linkbtn{background:none;border:0;color:var(--pri);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+</style>
+
+<div class="wrap">
+  <!-- HOME -->
+  <section id="vHome">
+    <header class="head">
+      <div>
+        <div class="eyebrow">Kelas III SD/MI</div>
+        <h1>Ruang Latihan</h1>
+        <p>Pilih pelajaran dan paket, kerjakan, lalu lihat nilaimu.</p>
+        <span class="status" id="stHome"><i></i><span>Menyambungkan…</span></span>
+      </div>
+      <svg viewBox="0 0 76 76" aria-hidden="true">
+        <rect x="10" y="16" width="44" height="54" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="22" y="10" width="20" height="12" rx="4" fill="var(--pri)"/>
+        <path d="M20 36l5 5 9-10M20 54l5 5 9-10" fill="none" stroke="var(--ok)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="58" cy="20" r="12" fill="var(--sun)"/>
+      </svg>
+    </header>
+    <div id="homeList"></div>
+    <div class="foot"><button class="linkbtn" type="button" id="toRekap">Untuk orang tua: rekap hasil</button></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="vQuiz" hidden>
+    <button class="back" type="button" id="qBack">← Daftar paket</button>
+    <div class="qhero">
+      <div class="eyebrow" id="qEyebrow"></div>
+      <h1 id="qTitle"></h1>
+      <div class="chips" id="qChips"></div>
+    </div>
+    <div id="qResult"></div>
+    <div id="qPg"></div>
+    <div id="qIs"></div>
+    <p class="note" id="qSrc" style="text-align:center;margin-top:20px"></p>
+  </section>
+
+  <!-- PARENT RECAP -->
+  <section id="vRekap" class="rk" hidden>
+    <button class="back" type="button" id="rBack">← Kembali</button>
+    <h1>Rekap hasil belajar</h1>
+    <p class="note" id="rNote">Memuat data…</p>
+    <div id="rBody"></div>
+  </section>
+</div>
+
+<div class="bar" id="qBar" hidden>
+  <div class="in">
+    <div class="prog"><small id="progText">Terjawab 0</small><div class="track"><div class="fill" id="fill"></div></div></div>
+    <button class="btn" id="mainBtn" type="button">Kumpulkan</button>
+  </div>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="dlg">
+    <h3 id="mTitle">Masih ada soal kosong</h3>
+    <p id="mText"></p>
+    <div class="acts">
+      <button class="btn ghost" id="mBack" type="button">Kerjakan lagi</button>
+      <button class="btn" id="mGo" type="button">Tetap kumpulkan</button>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="paketData">[]</script>
+<script>
+"use strict";
+/* ===== Data ===== */
+var PAKETS = [];
+var BYID = {};
+function loadPakets() {
+  return fetch("paket/daftar.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (list) {
+    return Promise.all(list.map(function (f) {
+      return fetch("paket/" + f.file + "?v=" + encodeURIComponent(f.v || "")).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    }));
+  }).then(function (arr) {
+    PAKETS = arr.filter(Boolean); BYID = {}; PAKETS.forEach(function (p) { BYID[p.id] = p; });
+  }).catch(function () { PAKETS = []; });
+}
+var CFG = window.RL_CONFIG || {};
+var DRIVE_URL = CFG.SHEET_URL || "https://drive.google.com/drive/folders/1MjvmhHNrERyZF-gNippPi6oOYxo2-w85";
+var PTS_PG = 3, PTS_IS = 5;
+var $ = function (id) { return document.getElementById(id); };
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function plain(html) { var d = document.createElement("div"); d.innerHTML = html; return (d.textContent || "").replace(/\s+/g, " ").trim(); }
+function lsGet(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function device() { var u = navigator.userAgent || ""; if (/iPad/.test(u) || (/Macintosh/.test(u) && navigator.maxTouchPoints > 1)) return "iPad"; if (/iPhone/.test(u)) return "iPhone"; if (/Android/.test(u)) return "Android"; return "Lainnya"; }
+function fmtDate(iso) { try { return new Date(iso).toLocaleString("id-ID", { timeZone: "Asia/Makassar", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return iso; } }
+
+/* ===== Database: Google Sheet lewat Google Apps Script ===== */
+/* Hasil disimpan dulu di perangkat (rl-pending), lalu dikirim saat ada internet. Server menolak kiriman ganda (id sama). */
+var db = null, dbState = "connecting", ATTEMPTS = [], attemptsLoaded = false, SUMMARY = {}, pinError = "";
+function setStatus(state, text) {
+  dbState = state;
+  var el = $("stHome"); el.className = "status " + (state === "ok" ? "ok" : state === "connecting" ? "" : state === "pending" ? "warn" : "bad");
+  el.lastElementChild.textContent = text;
+}
+function refreshStatus() {
+  var pend = lsGet("rl-pending", []).length;
+  if (!CFG.API_URL) { setStatus("off", "Nilai hanya tersimpan di perangkat ini"); return; }
+  if (!db) { setStatus(dbState === "connecting" ? "connecting" : (pend ? "pending" : "off"), dbState === "connecting" ? "Menyambungkan…" : (pend ? pend + " hasil menunggu internet" : "Belum tersambung. Nilai tetap tersimpan di perangkat ini")); return; }
+  if (pend) setStatus("pending", pend + " hasil menunggu disimpan");
+  else setStatus("ok", "Nilai tersimpan otomatis");
+}
+function api(params, body) {
+  var url = CFG.API_URL + "?" + Object.keys(params).map(function (k) { return encodeURIComponent(k) + "=" + encodeURIComponent(params[k]); }).join("&");
+  var ctrl = window.AbortController ? new AbortController() : null;
+  var tm = setTimeout(function () { if (ctrl) ctrl.abort(); }, 25000);
+  var opt = { redirect: "follow", signal: ctrl ? ctrl.signal : undefined };
+  if (body) { opt.method = "POST"; opt.body = JSON.stringify(body); opt.headers = { "Content-Type": "text/plain;charset=utf-8" }; }
+  return fetch(url, opt).then(function (r) { return r.json(); }).then(function (j) {
+    clearTimeout(tm); if (!j || !j.ok) throw (j || { error: "kosong" }); return j;
+  }, function (e) { clearTimeout(tm); throw { error: "jaringan", detail: String(e) }; });
+}
+function connect() {
+  if (!CFG.API_URL) { dbState = "off"; refreshStatus(); return; }
+  api({ action: "summary", key: CFG.WRITE_KEY }).then(function (j) {
+    db = true; SUMMARY = j.summary || {}; refreshStatus(); renderHome();
+    return flushPending().then(function () { if (parentPin() && !$("vRekap").hidden) loadAttempts(); });
+  }).catch(function () { db = null; dbState = "off"; refreshStatus(); });
+}
+function parentPin() { return lsGet("rl-pin", ""); }
+function pinForm() {
+  $("rNote").textContent = "Rekap ini untuk orang tua. Masukkan PIN orang tua.";
+  $("rBody").innerHTML = '<div class="card"><form class="pinf" id="pinF"><input id="pinIn" type="password" inputmode="numeric" autocomplete="off" aria-label="PIN orang tua">' +
+    '<button class="btn" type="submit">Buka rekap</button></form>' + (pinError ? '<p class="note" style="color:var(--bad)">' + esc(pinError) + "</p>" : "") + "</div>";
+  $("pinF").onsubmit = function (e) {
+    e.preventDefault(); var v = $("pinIn").value.trim(); if (!v) return;
+    lsSet("rl-pin", v); pinError = ""; attemptsLoaded = false; $("rNote").textContent = "Memeriksa PIN…"; $("rBody").innerHTML = "";
+    if (!db) connect(); else loadAttempts();
+  };
+}
+function bindPinOut() {
+  var b = $("pinOut"); if (!b) return;
+  b.onclick = function () { lsSet("rl-pin", ""); ATTEMPTS = []; attemptsLoaded = false; renderRekap(); };
+}
+function loadAttempts() {
+  if (!db) return Promise.resolve();
+  if (!parentPin()) return api({ action: "summary", key: CFG.WRITE_KEY }).then(function (j) { SUMMARY = j.summary || {}; renderHome(); }).catch(function () {});
+  return api({ action: "list" }, { action: "list", pin: parentPin() }).then(function (j) {
+    ATTEMPTS = j.attempts || []; attemptsLoaded = true; renderHome(); if (!$("vRekap").hidden) renderRekap();
+  }).catch(function (e) {
+    attemptsLoaded = false;
+    if (e && e.error === "pin") { lsSet("rl-pin", ""); pinError = "PIN salah. Coba lagi."; }
+    if (!$("vRekap").hidden) { if (!parentPin()) pinForm(); else $("rNote").textContent = "Data belum bisa dimuat. Coba lagi nanti."; }
+  });
+}
+
+var flushing = false;
+function flushPending() {
+  if (!CFG.API_URL || flushing) return Promise.resolve();
+  var q = lsGet("rl-pending", []); if (!q.length) { refreshStatus(); return Promise.resolve(); }
+  flushing = true;
+  var a = q[0];
+  var body = JSON.parse(JSON.stringify(a)); var id = body._docId; delete body._docId;
+  return api({ action: "save" }, { action: "save", key: CFG.WRITE_KEY, id: id, attempt: body }).then(function (j) {
+    db = true;
+    a.percobaanKe = j.percobaanKe;
+    var rest = lsGet("rl-pending", []).filter(function (x) { return x._docId !== id; });
+    lsSet("rl-pending", rest);
+    var last = lsGet("rl-last", {}); last[a.paketId] = { nilai: a.nilai, ke: a.percobaanKe }; lsSet("rl-last", last);
+    if (!j.duplikat) {
+      var s = SUMMARY[a.paketId] = SUMMARY[a.paketId] || { n: 0, best: 0 }; s.n++; s.last = a.nilai; s.best = Math.max(s.best || 0, a.nilai);
+      if (attemptsLoaded) { body._id = id; body.percobaanKe = j.percobaanKe; ATTEMPTS.push(body); }
+    }
+    if (currentSaveId === id) showSave("Tersimpan ✓ (percobaan ke-" + a.percobaanKe + ")");
+    flushing = false; return flushPending();
+  }).catch(function (e) {
+    flushing = false;
+    if (e && e.error === "jaringan") { db = null; dbState = "off"; }
+    refreshStatus();
+    if (currentSaveId === a._docId) showSave(e && e.error === "key" ? "Kunci penyimpanan salah. Beri tahu orang tua." : "Belum tersimpan. Nilai aman di perangkat ini dan akan dikirim otomatis saat ada internet.");
+  }).then(function () { refreshStatus(); });
+}
+window.addEventListener("online", function () { if (!db) connect(); else flushPending(); });
+document.addEventListener("visibilitychange", function () { if (!document.hidden) { if (!db) connect(); else flushPending(); } });
+setInterval(function () { if (lsGet("rl-pending", []).length) { if (!db) connect(); else flushPending(); } }, 60000);
+
+/* ===== Home ===== */
+var MAPEL_ORDER = ["Matematika", "IPAS", "Bahasa Indonesia", "Pendidikan Pancasila", "Bahasa Inggris", "Bahasa Arab", "Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "SKI"];
+function statsFor(pid) {
+  if (!attemptsLoaded) {
+    var pq = lsGet("rl-pending", []).filter(function (a) { return a.paketId === pid; });
+    var sm = SUMMARY[pid] || { n: 0 }, nn = (sm.n || 0) + pq.length;
+    if (!nn) { var l0 = lsGet("rl-last", {})[pid]; return l0 ? { n: l0.ke || 1, last: l0.nilai } : { n: 0 }; }
+    return { n: nn, last: pq.length ? pq[pq.length - 1].nilai : sm.last };
+  }
+  var list = ATTEMPTS.filter(function (a) { return a.paketId === pid; });
+  var pend = lsGet("rl-pending", []).filter(function (a) { return a.paketId === pid; });
+  var all = list.concat(pend).sort(function (x, y) { return String(x.selesai).localeCompare(String(y.selesai)); });
+  if (!all.length) { var l = lsGet("rl-last", {})[pid]; return l ? { n: l.ke || 1, last: l.nilai } : { n: 0 }; }
+  return { n: all.length, last: all[all.length - 1].nilai, best: Math.max.apply(null, all.map(function (a) { return a.nilai; })) };
+}
+function renderHome() {
+  var groups = {};
+  PAKETS.forEach(function (p) { var g = p.uji ? "Uji coba" : p.mapel; (groups[g] = groups[g] || []).push(p); });
+  var names = Object.keys(groups).sort(function (a, b) {
+    var ia = a === "Uji coba" ? 999 : (MAPEL_ORDER.indexOf(a) < 0 ? 500 : MAPEL_ORDER.indexOf(a));
+    var ib = b === "Uji coba" ? 999 : (MAPEL_ORDER.indexOf(b) < 0 ? 500 : MAPEL_ORDER.indexOf(b));
+    return ia - ib || a.localeCompare(b);
+  });
+  var real = PAKETS.filter(function (p) { return !p.uji; }).length;
+  var h = "";
+  if (!real) h += '<div class="sec"><div class="empty"><b>Paket latihan baru akan muncul di sini</b>Setiap bab yang sedang dipelajari di sekolah akan ditambahkan sebagai paket.</div></div>';
+  names.forEach(function (g) {
+    var babs = {};
+    groups[g].forEach(function (p) { var k = p.bab + "|" + p.judulBab; (babs[k] = babs[k] || []).push(p); });
+    h += '<div class="sec"><h2><span class="dot" aria-hidden="true"></span>' + esc(g) + '</h2>';
+    Object.keys(babs).sort(function (a, b) { return parseInt(a) - parseInt(b); }).forEach(function (k) {
+      var ps = babs[k].sort(function (a, b) { return a.paket - b.paket; }), p0 = ps[0];
+      h += '<div class="bab"><h3>' + (p0.uji ? "" : "<small>Bab " + esc(p0.bab) + "</small>") + esc(p0.judulBab) + '</h3>';
+      if (p0.uji) h += '<p class="note" style="margin:-4px 2px 10px">Kerjakan sekali untuk memastikan nilai tersimpan. Tidak dihitung dalam rekap.</p>';
+      h += '<div class="pk">';
+      ps.forEach(function (p) {
+        var s = statsFor(p.id);
+        var sub = s.n ? '<small class="got">Nilai terakhir ' + s.last + '</small><small>Sudah ' + s.n + '× dikerjakan</small>' : '<small>' + (p.pg.length + p.isian.length) + ' soal</small>';
+        h += '<button class="pkb" type="button" data-p="' + esc(p.id) + '"><span class="n">' + esc(p.paket) + '</span><span><b>Paket ' + esc(p.paket) + '</b>' + sub + '</span></button>';
+      });
+      h += '</div></div>';
+    });
+    h += '</div>';
+  });
+  $("homeList").innerHTML = h;
+}
+$("homeList").addEventListener("click", function (e) { var b = e.target.closest(".pkb"); if (b) location.hash = "#p/" + b.getAttribute("data-p"); });
+
+/* ===== Quiz ===== */
+var Q = null; /* current quiz state */
+var currentSaveId = null;
+function norm(s) { return String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9؀-ۿ]+/g, " ").trim(); }
+function lev(a, b) { var m = a.length, n = b.length, d = [], i, j; for (i = 0; i <= m; i++) d[i] = [i]; for (j = 0; j <= n; j++) d[0][j] = j; for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
+/* 2 = benar, 1 = benar dengan salah ketik kecil, 0 = salah */
+function checkWord(ans, keys) {
+  var n = norm(ans); if (!n) return 0;
+  keys = keys.map(norm);
+  var toks = n.split(" "), pad = " " + n + " ", flat = n.replace(/ /g, "");
+  for (var k = 0; k < keys.length; k++) if (n === keys[k] || pad.indexOf(" " + keys[k] + " ") > -1) return 2;
+  var cands = toks.concat([flat]);
+  for (k = 0; k < keys.length; k++) { var kf = keys[k].replace(/ /g, ""); if (kf.length < 5) continue; for (var c = 0; c < cands.length; c++) if (lev(cands[c], kf) <= 1) return 1; }
+  return 0;
+}
+function checkNum(ans, n) { var s = String(ans).replace(/[.\s]/g, ""); var m = s.match(/-?\d+/); return (m && Number(m[0]) === n) ? 2 : 0; }
+function wrongTag(it, ans) {
+  if (!it.w) return null; var n = it.n != null ? String(ans).replace(/[.\s]/g, "").match(/-?\d+/) : null;
+  var key = it.n != null ? (n ? String(Number(n[0])) : "") : norm(ans);
+  var tag = null; Object.keys(it.w).forEach(function (k) { if ((it.n != null ? k : norm(k)) === key) tag = it.w[k]; }); return tag;
+}
+function isNeg(q) { return /\b(TIDAK|BUKAN|KECUALI|SALAH)\b/.test(plain(q)); }
+
+function openPaket(id) {
+  var p = BYID[id]; if (!p) { location.hash = ""; return; }
+  Q = { p: p, order: p.pg.map(function (m) { return shuffle(m.o.map(function (_, j) { return j; })); }), start: Date.now(), first: {}, firstAns: {}, changes: {}, submitted: false };
+  $("qEyebrow").textContent = p.uji ? "Uji coba" : p.mapel + " · Bab " + p.bab;
+  $("qTitle").textContent = (p.uji ? "" : p.judulBab + " · ") + "Paket " + p.paket;
+  var chips = []; if (p.pg.length) chips.push(p.pg.length + " pilihan ganda"); if (p.isian.length) chips.push(p.isian.length + " isian"); chips.push("Nilai maks. 100");
+  $("qChips").innerHTML = chips.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("");
+  $("qSrc").textContent = p.sumber ? "Materi: " + p.sumber : "";
+  var h = "";
+  if (p.pg.length) {
+    h += '<h2 class="part">A. Pilihan Ganda</h2><p class="part">Ketuk satu jawaban yang paling benar.</p>';
+    p.pg.forEach(function (m, i) {
+      h += '<div class="q" id="pg' + i + '"><div class="qh"><div class="qn">' + (i + 1) + '</div><div style="min-width:0"><div class="qt">' + m.q + '</div><div class="opts">';
+      Q.order[i].forEach(function (oi, j) { h += '<label class="opt"><input type="radio" name="m' + i + '" value="' + oi + '"><span class="let">' + "ABCD"[j] + '</span><span>' + m.o[oi] + '</span></label>'; });
+      h += '</div><div class="fbw"></div></div></div></div>';
+    });
+  }
+  $("qPg").innerHTML = h;
+  h = "";
+  if (p.isian.length) {
+    h += '<h2 class="part">' + (p.pg.length ? "B. " : "") + 'Isian</h2><p class="part">Ketik jawabanmu di kotak.</p>';
+    p.isian.forEach(function (s, i) {
+      var num = s.n != null;
+      h += '<div class="q" id="is' + i + '"><div class="qh"><div class="qn">' + (i + 1) + '</div><div style="min-width:0"><div class="qt">' + s.q + '</div>' +
+        '<input class="txt" type="text" id="t' + i + '" placeholder="Jawabanmu…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"' + (num ? ' inputmode="numeric"' : "") + '>' +
+        '<div class="fbw"></div></div></div></div>';
+    });
+  }
+  $("qIs").innerHTML = h;
+  $("qResult").innerHTML = "";
+  $("mainBtn").textContent = "Kumpulkan";
+  document.querySelectorAll("#qPg .opt input").forEach(function (inp) {
+    inp.addEventListener("change", function () {
+      var i = Number(inp.name.slice(1)), key = "pg" + i;
+      document.querySelectorAll('input[name="' + inp.name + '"]').forEach(function (x) { x.parentNode.classList.toggle("sel", x.checked); });
+      if (Q.first[key] == null) { Q.first[key] = Math.round((Date.now() - Q.start) / 1000); Q.firstAns[key] = Number(inp.value); }
+      else Q.changes[key] = (Q.changes[key] || 0) + 1;
+      progress();
+    });
+  });
+  document.querySelectorAll("#qIs .txt").forEach(function (t) {
+    t.addEventListener("input", progress);
+    t.addEventListener("change", function () {
+      var key = "is" + t.id.slice(1); if (!t.value.trim()) return;
+      if (Q.first[key] == null) { Q.first[key] = Math.round((Date.now() - Q.start) / 1000); Q.firstAns[key] = t.value.trim(); }
+      else Q.changes[key] = (Q.changes[key] || 0) + 1;
+    });
+  });
+  show("quiz"); progress(); window.scrollTo(0, 0);
+}
+function total() { return Q.p.pg.length + Q.p.isian.length; }
+function answered() {
+  var n = 0; Q.p.pg.forEach(function (m, i) { if (document.querySelector('input[name="m' + i + '"]:checked')) n++; });
+  Q.p.isian.forEach(function (s, i) { if ($("t" + i).value.trim()) n++; }); return n;
+}
+function progress() {
+  if (!Q) return; var n = answered(), T = total();
+  $("progText").textContent = Q.submitted ? "Selesai! Lihat nilaimu di atas." : "Terjawab " + n + " dari " + T;
+  $("fill").style.width = (Q.submitted ? 100 : n / T * 100) + "%";
+}
+function trySubmit() {
+  if (!Q) return;
+  if (Q.submitted) { openPaket(Q.p.id); return; }
+  var left = total() - answered();
+  if (left > 0) { openModal("empty", left); return; }
+  grade();
+}
+function grade() {
+  $("modal").classList.remove("show");
+  var p = Q.p; Q.submitted = true;
+  var items = [], pgOk = 0, isOk = 0, kosong = 0, mkUsed = {};
+  p.pg.forEach(function (m, i) {
+    var card = $("pg" + i), ch = document.querySelector('input[name="m' + i + '"]:checked');
+    var val = ch ? Number(ch.value) : null, ok = val === 0;
+    if (ok) pgOk++; if (val === null) kosong++;
+    card.querySelectorAll(".opt").forEach(function (lab) {
+      var inp = lab.querySelector("input"), oi = Number(inp.value); inp.disabled = true; lab.classList.remove("sel");
+      if (oi === 0) lab.classList.add("right"); else if (val === oi) lab.classList.add("wrong");
+    });
+    card.querySelector(".opts").classList.add("locked"); card.classList.add(ok ? "ok" : "no");
+    var letter = "ABCD"[Q.order[i].indexOf(0)];
+    card.querySelector(".fbw").innerHTML = '<div class="fb ' + (ok ? "ok" : "no") + '">' + (ok ? "✔ Benar!" : (val === null ? "✘ Tidak dijawab." : "✘ Belum tepat.") + " Jawaban: <b>" + letter + ". " + m.o[0] + "</b>") + '<span class="ex">' + m.e + "</span></div>";
+    var mk = (!ok && val !== null && m.m) ? (m.m[val] || null) : null; if (mk) mkUsed[mk] = 1;
+    var targets = (m.m || []).filter(Boolean);
+    items.push({ no: i + 1, id: m.id || ("P" + (i + 1)), tipe: "pg", sub: m.sub || "", lv: m.lv || "", neg: isNeg(m.q), q: plain(m.q).slice(0, 300),
+      jawaban: val === null ? "" : plain(m.o[val]), awal: Q.firstAns["pg" + i] == null ? "" : plain(m.o[Q.firstAns["pg" + i]]), kunci: plain(m.o[0]),
+      benar: ok, ejaan: false, mk: mk, target: targets, t: Q.first["pg" + i] == null ? null : Q.first["pg" + i], ubah: Q.changes["pg" + i] || 0 });
+  });
+  p.isian.forEach(function (s, i) {
+    var card = $("is" + i), inp = $("t" + i), ans = inp.value.trim();
+    var r = s.n != null ? checkNum(ans, s.n) : checkWord(ans, s.k || []);
+    inp.disabled = true; if (r > 0) isOk++; if (!ans) kosong++;
+    card.classList.add(r > 0 ? "ok" : "no");
+    var fb = r === 2 ? '<div class="fb ok">✔ Benar!' : r === 1 ? '<div class="fb near">✔ Benar, tapi perhatikan tulisannya: <b>' + esc(s.a) + "</b>" : '<div class="fb no">' + (ans ? "✘ Belum tepat." : "✘ Tidak dijawab.") + " Jawaban: <b>" + esc(s.a) + "</b>";
+    card.querySelector(".fbw").innerHTML = fb + '<span class="ex">' + s.e + "</span></div>";
+    var mk = (r === 0 && ans) ? wrongTag(s, ans) : null; if (mk) mkUsed[mk] = 1;
+    var targets = s.w ? Object.keys(s.w).map(function (k) { return s.w[k]; }) : []; if (s.mk) targets.push(s.mk);
+    if (r === 0 && ans && !mk && s.mk) { mk = s.mk; mkUsed[mk] = 1; }
+    items.push({ no: p.pg.length + i + 1, id: s.id || ("I" + (i + 1)), tipe: "isian", sub: s.sub || "", lv: s.lv || "", neg: isNeg(s.q), q: plain(s.q).slice(0, 300),
+      jawaban: ans.slice(0, 120), awal: String(Q.firstAns["is" + i] || "").slice(0, 120), kunci: s.a, benar: r > 0, ejaan: r === 1, mk: mk, target: targets,
+      t: Q.first["is" + i] == null ? null : Q.first["is" + i], ubah: Q.changes["is" + i] || 0 });
+  });
+  var pts = pgOk * PTS_PG + isOk * PTS_IS, max = p.pg.length * PTS_PG + p.isian.length * PTS_IS;
+  var nilai = Math.round(pts / max * 100);
+  var mkDesc = {}; Object.keys(mkUsed).forEach(function (k) { mkDesc[k] = (p.mk && p.mk[k]) || ""; });
+  var now = new Date(), docId = p.id + "_" + now.getTime();
+  var attempt = { v: 1, _docId: docId, paketId: p.id, mapel: p.mapel, kelas: p.kelas || 3, bab: p.bab, judulBab: p.judulBab, paket: p.paket, uji: !!p.uji,
+    mulai: new Date(Q.start).toISOString(), selesai: now.toISOString(), durasiDetik: Math.round((now - Q.start) / 1000),
+    nilai: nilai, pgBenar: pgOk, pgTotal: p.pg.length, isBenar: isOk, isTotal: p.isian.length, kosong: kosong, perangkat: device(), mk: mkDesc, items: items };
+  var q = lsGet("rl-pending", []); q.push(attempt); lsSet("rl-pending", q);
+  currentSaveId = docId;
+
+  var stars, msg;
+  if (nilai >= 90) { stars = "⭐⭐⭐⭐⭐"; msg = "Luar biasa! MasyaAllah, hebat sekali!"; }
+  else if (nilai >= 75) { stars = "⭐⭐⭐⭐"; msg = "Bagus! Tinggal sedikit lagi sempurna."; }
+  else if (nilai >= 60) { stars = "⭐⭐⭐"; msg = "Kamu sudah berusaha. Ayo baca penjelasan soal yang salah."; }
+  else { stars = "⭐⭐"; msg = "Tetap semangat! Baca lagi penjelasannya, lalu coba lagi besok."; }
+  var wrong = total() - pgOk - isOk;
+  var grid = "";
+  if (p.pg.length) grid += '<div class="box">Pilihan ganda<b>' + pgOk + " / " + p.pg.length + "</b></div>";
+  if (p.isian.length) grid += '<div class="box">Isian<b>' + isOk + " / " + p.isian.length + "</b></div>";
+  $("qResult").innerHTML = '<div class="result" aria-live="polite"><div class="muted">Nilaimu</div><div class="score">' + nilai + '</div><div class="stars">' + stars + '</div><div class="msg">' + msg + '</div>' +
+    '<div class="grid2">' + grid + "</div>" +
+    '<p class="note" style="margin:12px 0 0">' + (wrong > 0 ? "Gulir ke bawah untuk membaca " + wrong + " soal yang masih salah (kotak merah) beserta penjelasannya." : "Semua jawaban benar!") + "</p>" +
+    '<div class="save" id="saveMsg">' + (db ? "Menyimpan…" : "Nilai disimpan di perangkat ini dan akan dikirim saat tersambung.") + "</div>" +
+    '<div class="acts"><button class="btn ghost" type="button" id="rHome">Daftar paket</button><button class="btn" type="button" id="rAgain">Ulangi</button></div></div>';
+  $("rHome").onclick = function () { location.hash = ""; };
+  $("rAgain").onclick = function () { openPaket(p.id); };
+  $("mainBtn").textContent = "Ulangi";
+  progress(); refreshStatus();
+  window.scrollTo({ top: $("qResult").offsetTop - 12, behavior: "smooth" });
+  flushPending();
+}
+function showSave(t) { var el = $("saveMsg"); if (el) el.textContent = t; }
+$("mainBtn").addEventListener("click", trySubmit);
+var modalMode = "empty";
+function openModal(mode, left) {
+  modalMode = mode;
+  if (mode === "leave") { $("mTitle").textContent = "Keluar dari paket ini?"; $("mText").textContent = "Jawabanmu belum dikumpulkan dan tidak akan disimpan."; $("mBack").textContent = "Lanjut mengerjakan"; $("mGo").textContent = "Keluar"; }
+  else { $("mTitle").textContent = "Masih ada soal kosong"; $("mText").textContent = "Ada " + left + " soal yang belum dijawab. Soal kosong mendapat nilai 0."; $("mBack").textContent = "Kerjakan lagi"; $("mGo").textContent = "Tetap kumpulkan"; }
+  $("modal").classList.add("show");
+}
+$("mGo").addEventListener("click", function () { if (modalMode === "leave") { $("modal").classList.remove("show"); Q = null; location.hash = ""; } else grade(); });
+$("mBack").addEventListener("click", function () {
+  $("modal").classList.remove("show");
+  if (modalMode === "leave") return;
+  for (var i = 0; i < Q.p.pg.length; i++) if (!document.querySelector('input[name="m' + i + '"]:checked')) { $("pg" + i).scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+  for (i = 0; i < Q.p.isian.length; i++) if (!$("t" + i).value.trim()) { $("is" + i).scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+});
+$("qBack").addEventListener("click", function () {
+  if (Q && !Q.submitted && answered() > 0) { openModal("leave"); return; }
+  location.hash = "";
+});
+
+/* ===== Parent recap ===== */
+function pct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+function statusTag(p) { return p >= 90 ? '<span class="tag ok">Kuat</span>' : p >= 75 ? '<span class="tag mid">Cukup</span>' : '<span class="tag no">Perlu diulang</span>'; }
+function renderRekap() {
+  var A = ATTEMPTS.filter(function (a) { return !a.uji; }).sort(function (x, y) { return String(x.selesai).localeCompare(String(y.selesai)); });
+  var U = ATTEMPTS.filter(function (a) { return a.uji; });
+  var pend = lsGet("rl-pending", []).length;
+  if (!CFG.API_URL) { $("rNote").textContent = "Penyimpanan belum disambungkan (config.js masih kosong)."; $("rBody").innerHTML = ""; return; }
+  if (!parentPin()) { pinForm(); return; }
+  if (!db) { $("rNote").textContent = "Data belum bisa dibaca karena tidak tersambung ke internet. Coba lagi nanti."; $("rBody").innerHTML = ""; return; }
+  if (!attemptsLoaded) { $("rNote").textContent = "Memuat data…"; return; }
+  $("rNote").innerHTML = "Rekap ini dihitung langsung dari setiap jawaban. Data mentah setiap soal tersimpan di " +
+    '<a href="' + DRIVE_URL + '" target="_blank" rel="noopener">Google Sheet Ruang Latihan</a>.' +
+    ' <button class="linkbtn" type="button" id="pinOut">Kunci rekap</button>' + (pend ? " " + pend + " hasil masih menunggu disimpan." : "");
+  var h = "";
+  if (!A.length) {
+    h += '<div class="card"><h2>Belum ada hasil latihan</h2><p class="note">' + (U.length ? "Uji coba sudah tersimpan " + U.length + "× (tidak dihitung). " : "") + "Rekap muncul setelah anak mengerjakan paket latihan.</p></div>";
+    $("rBody").innerHTML = h + historyHtml(ATTEMPTS); return;
+  }
+  /* per mapel-bab */
+  var bab = {};
+  A.forEach(function (a) { var k = a.mapel + " · Bab " + a.bab; var b = bab[k] = bab[k] || { judul: a.judulBab, n: 0, sum: 0, last: 0, best: 0, firstNew: [] , seen: {} }; b.n++; b.sum += a.nilai; b.last = a.nilai; b.best = Math.max(b.best, a.nilai); if (!b.seen[a.paketId]) { b.seen[a.paketId] = 1; b.firstNew.push(a.nilai); } });
+  h += '<div class="card"><h2>Ringkasan per bab</h2><div class="scroll"><table class="tbl"><thead><tr><th>Mapel / bab</th><th class="num">Dicoba</th><th class="num">Rata-rata</th><th class="num">Terakhir</th><th class="num">Percobaan pertama*</th></tr></thead><tbody>';
+  Object.keys(bab).forEach(function (k) { var b = bab[k], fn = Math.round(b.firstNew.reduce(function (s, x) { return s + x; }, 0) / b.firstNew.length);
+    h += "<tr><td><b>" + esc(k) + "</b><br><span class=\"note\">" + esc(b.judul) + "</span></td><td class=\"num\">" + b.n + "</td><td class=\"num\">" + Math.round(b.sum / b.n) + "</td><td class=\"num\">" + b.last + "</td><td class=\"num\">" + fn + " " + statusTag(fn) + "</td></tr>"; });
+  h += '</tbody></table></div><p class="note">*Rata-rata nilai saat sebuah paket dikerjakan pertama kali. Ini ukuran pemahaman yang lebih jujur, karena nilai pengulangan paket yang sama bisa naik karena hafal soal.</p></div>';
+
+  /* misconceptions */
+  var mk = {};
+  A.forEach(function (a) { (a.items || []).forEach(function (it) {
+    if (it.mk) { var m = mk[it.mk] = mk[it.mk] || { desc: (a.mk && a.mk[it.mk]) || "", mapel: a.mapel, n: 0, att: {}, last: "", lastOk: null }; m.n++; m.att[a._id] = 1; m.last = a.selesai; m.lastOk = false; }
+    (it.target || []).forEach(function (t) { if (t !== it.mk && mk[t] && it.benar) { mk[t].lastOk = true; } });
+  }); });
+  var rec = Object.keys(mk).map(function (k) { var m = mk[k]; m.code = k; m.na = Object.keys(m.att).length; return m; }).sort(function (x, y) { return y.n - x.n; });
+  h += '<div class="card"><h2>Kesalahan berulang</h2>';
+  if (!rec.length) h += '<p class="note">Belum ada miskonsepsi yang tercatat.</p>';
+  else {
+    h += '<div class="scroll"><table class="tbl"><thead><tr><th>Miskonsepsi</th><th class="num">Kali</th><th class="num">Di percobaan</th><th>Status</th></tr></thead><tbody>';
+    rec.forEach(function (m) {
+      var st = (m.n >= 2 && m.na >= 2) ? (m.lastOk ? '<span class="tag mid">Berulang, mulai membaik</span>' : '<span class="tag no">Berulang</span>') : (m.lastOk ? '<span class="tag ok">Sudah benar lagi</span>' : '<span class="tag gray">Baru sekali</span>');
+      h += "<tr><td><b>" + esc(m.desc || m.code) + "</b><br><span class=\"note\">" + esc(m.mapel) + " · " + esc(m.code) + "</span></td><td class=\"num\">" + m.n + "</td><td class=\"num\">" + m.na + "</td><td>" + st + "</td></tr>";
+    });
+    h += '</tbody></table></div><p class="note">Berulang = muncul ≥ 2 kali di ≥ 2 percobaan berbeda. Ini prioritas untuk penjelasan mendalam.</p>';
+  }
+  h += "</div>";
+
+  /* subtopics */
+  var sub = {};
+  A.forEach(function (a) { (a.items || []).forEach(function (it) { var k = a.mapel + "|" + a.bab + "|" + (it.sub || "(tanpa subtopik)"); var s = sub[k] = sub[k] || { n: 0, ok: 0 }; s.n++; if (it.benar) s.ok++; }); });
+  var subs = Object.keys(sub).map(function (k) { var p = k.split("|"); return { mapel: p[0], bab: p[1], sub: p[2], n: sub[k].n, ok: sub[k].ok, p: pct(sub[k].ok, sub[k].n) }; }).sort(function (x, y) { return x.p - y.p; });
+  h += '<div class="card"><h2>Per subtopik</h2><div class="scroll"><table class="tbl"><thead><tr><th>Subtopik</th><th class="num">Benar</th><th class="num">%</th><th>Status</th></tr></thead><tbody>';
+  subs.forEach(function (s) { h += "<tr><td><b>" + esc(s.sub) + "</b><br><span class=\"note\">" + esc(s.mapel) + " · Bab " + esc(s.bab) + "</span></td><td class=\"num\">" + s.ok + "/" + s.n + "</td><td class=\"num\">" + s.p + "</td><td>" + (s.n < 4 ? '<span class="tag gray">Data sedikit</span>' : statusTag(s.p)) + "</td></tr>"; });
+  h += "</tbody></table></div></div>";
+
+  /* negation words */
+  var ng = { n: 0, ok: 0 }, ot = { n: 0, ok: 0 };
+  A.forEach(function (a) { (a.items || []).forEach(function (it) { var b = it.neg ? ng : ot; b.n++; if (it.benar) b.ok++; }); });
+  if (ng.n) h += '<div class="card"><h2>Soal dengan kata TIDAK / BUKAN / KECUALI</h2><p class="note">Benar ' + ng.ok + "/" + ng.n + " (" + pct(ng.ok, ng.n) + "%), dibandingkan soal lain " + pct(ot.ok, ot.n) + "%." + (pct(ng.ok, ng.n) + 10 < pct(ot.ok, ot.n) ? " Selisihnya besar: latih kebiasaan melingkari kata TIDAK/BUKAN sebelum menjawab." : "") + "</p></div>";
+
+  $("rBody").innerHTML = h + historyHtml(ATTEMPTS);
+  bindPinOut();
+}
+function historyHtml(list) {
+  var L = list.slice().sort(function (x, y) { return String(y.selesai).localeCompare(String(x.selesai)); });
+  if (!L.length) return "";
+  var h = '<div class="card"><h2>Riwayat percobaan</h2><div class="hist">';
+  L.forEach(function (a, idx) {
+    h += '<button class="hrow" type="button" data-i="' + idx + '"><span><b>' + esc(a.uji ? "Uji coba" : a.mapel + " Bab " + a.bab + " · Paket " + a.paket) + "</b><small>" + esc(fmtDate(a.selesai)) + " WITA · percobaan ke-" + esc(a.percobaanKe || "?") + " · " + Math.round((a.durasiDetik || 0) / 60) + " menit · " + esc(a.perangkat || "") + "</small></span><span class=\"sc\">" + esc(a.nilai) + "</span></button>";
+    h += '<div class="detail" id="d' + idx + '" hidden></div>';
+  });
+  h += "</div></div>";
+  setTimeout(function () {
+    document.querySelectorAll(".hrow").forEach(function (b) {
+      b.onclick = function () {
+        var i = Number(b.getAttribute("data-i")), d = $("d" + i), a = L[i];
+        if (!d.hidden) { d.hidden = true; return; }
+        var wrong = (a.items || []).filter(function (it) { return !it.benar; });
+        d.innerHTML = wrong.length ? wrong.map(function (it) {
+          return '<div class="det"><b>No. ' + esc(it.no) + " (" + esc(it.tipe === "pg" ? "PG" : "isian") + ")</b> " + esc(it.q) + "<br>Jawaban anak: <b>" + esc(it.jawaban || "(kosong)") + "</b> · Kunci: <b>" + esc(it.kunci) + "</b>" + (it.mk ? '<br><span class="tag no">' + esc((a.mk && a.mk[it.mk]) || it.mk) + "</span>" : "") + (it.ubah ? " · diubah " + esc(it.ubah) + "×" : "") + "</div>";
+        }).join("") : '<div class="det okd">Semua benar.</div>';
+        d.hidden = false;
+      };
+    });
+  }, 0);
+  return h;
+}
+
+/* ===== Routing ===== */
+function show(v) {
+  $("vHome").hidden = v !== "home"; $("vQuiz").hidden = v !== "quiz"; $("vRekap").hidden = v !== "rekap"; $("qBar").hidden = v !== "quiz";
+}
+function route() {
+  var h = location.hash || "";
+  if (h.indexOf("#p/") === 0) { var id = decodeURIComponent(h.slice(3)); if (!Q || Q.p.id !== id || Q.submitted) openPaket(id); else show("quiz"); }
+  else if (h === "#rekap") { show("rekap"); renderRekap(); if (db) loadAttempts(); window.scrollTo(0, 0); }
+  else { Q = null; show("home"); renderHome(); if (db) loadAttempts(); window.scrollTo(0, 0); }
+}
+$("toRekap").addEventListener("click", function () { location.hash = "#rekap"; });
+$("rBack").addEventListener("click", function () { location.hash = ""; });
+window.addEventListener("hashchange", route);
+refreshStatus();
+loadPakets().then(function () { route(); connect(); });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
+</script>
+
+</body></html>
