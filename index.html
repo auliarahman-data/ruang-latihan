@@ -264,17 +264,50 @@ function api(params, body) {
   var tm = setTimeout(function () { if (ctrl) ctrl.abort(); }, 25000);
   var opt = { redirect: "follow", signal: ctrl ? ctrl.signal : undefined };
   if (body) { opt.method = "POST"; opt.body = JSON.stringify(body); opt.headers = { "Content-Type": "text/plain;charset=utf-8" }; }
-  return fetch(url, opt).then(function (r) { return r.json(); }).then(function (j) {
+  function netErr(e) {
+    return { error: navigator.onLine === false ? "offline" : "jaringan", detail: e && e.name === "AbortError" ? "tidak ada jawaban dalam 25 detik" : String(e) };
+  }
+  return fetch(url, opt).then(function (r) {
+    return r.text().then(function (t) {
+      try { return JSON.parse(t); } catch (x) {
+        throw { error: "server", detail: "HTTP " + r.status + ": " + t.replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/gi, " ").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160) };
+      }
+    }, function (e) { throw netErr(e); });
+  }, function (e) { throw netErr(e); }).then(function (j) {
     clearTimeout(tm); if (!j || !j.ok) throw (j || { error: "kosong" }); return j;
-  }, function (e) { clearTimeout(tm); throw { error: "jaringan", detail: String(e) }; });
+  }, function (e) { clearTimeout(tm); throw e; });
 }
+/* Pesan galat yang membedakan: perangkat offline / server tidak bisa dihubungi / server menjawab galat. */
+var lastErr = null;
+function errText(e) {
+  e = e || {};
+  if (e.error === "offline") return "Perangkat ini sedang tidak tersambung ke internet. Periksa Wi-Fi atau data seluler, lalu coba lagi.";
+  if (e.error === "jaringan") return "Internet ada, tetapi server penyimpanan (Google Apps Script) tidak bisa dihubungi dari perangkat ini.";
+  if (e.error === "server") return "Server penyimpanan menjawab, tetapi jawabannya bukan data. Biasanya Apps Script sedang bermasalah atau izin aksesnya berubah.";
+  if (e.error === "key") return "Kunci penyimpanan di situs tidak cocok dengan Apps Script.";
+  if (e.error === "pin") return "PIN salah.";
+  return "Server penyimpanan menjawab dengan galat.";
+}
+function errHtml(e) {
+  var d = e && (e.detail || (e.error && ["offline", "jaringan", "server", "key", "pin"].indexOf(e.error) < 0 ? e.error : ""));
+  return esc(errText(e)) + (d ? '<br><small style="opacity:.75">Detail: ' + esc(String(d).slice(0, 200)) + "</small>" : "") +
+    ' <button class="linkbtn" type="button" id="rRetry">Coba lagi</button>';
+}
+function bindRetry() { var b = $("rRetry"); if (b) b.onclick = function () { $("rNote").textContent = "Menyambungkan…"; if (!db) connect(); else loadAttempts(); }; }
 function connect() {
   if (!CFG.API_URL) { dbState = "off"; refreshStatus(); return; }
+  if (connecting) return;
+  connecting = true; dbState = "connecting"; refreshStatus(); if (!$("vRekap").hidden) renderRekap();
   api({ action: "summary", key: CFG.WRITE_KEY }).then(function (j) {
-    db = true; SUMMARY = j.summary || {}; refreshStatus(); renderHome();
-    return flushPending().then(function () { if (parentPin() && !$("vRekap").hidden) loadAttempts(); });
-  }).catch(function () { db = null; dbState = "off"; refreshStatus(); });
+    connecting = false; db = true; lastErr = null; SUMMARY = j.summary || {}; refreshStatus(); renderHome();
+    // rekap dimuat lebih dulu, supaya hasil yang belum terkirim tidak menghalangi rekap
+    if (parentPin() && !$("vRekap").hidden) loadAttempts(); else if (!$("vRekap").hidden) renderRekap();
+    return flushPending();
+  }, function (e) {
+    connecting = false; db = null; dbState = "off"; lastErr = e; refreshStatus(); if (!$("vRekap").hidden) renderRekap();
+  });
 }
+var connecting = false;
 function parentPin() { return lsGet("rl-pin", ""); }
 function pinForm() {
   $("rNote").textContent = "Rekap ini untuk orang tua. Masukkan PIN orang tua.";
@@ -298,7 +331,8 @@ function loadAttempts() {
   }).catch(function (e) {
     attemptsLoaded = false;
     if (e && e.error === "pin") { lsSet("rl-pin", ""); pinError = "PIN salah. Coba lagi."; }
-    if (!$("vRekap").hidden) { if (!parentPin()) pinForm(); else $("rNote").textContent = "Data belum bisa dimuat. Coba lagi nanti."; }
+    if (e && e.error !== "pin") lastErr = e;
+    if (!$("vRekap").hidden) { if (!parentPin()) pinForm(); else { $("rNote").innerHTML = "Rekap belum bisa dimuat. " + errHtml(e); $("rBody").innerHTML = ""; bindRetry(); } }
   });
 }
 
@@ -323,7 +357,7 @@ function flushPending() {
     flushing = false; return flushPending();
   }).catch(function (e) {
     flushing = false;
-    if (e && e.error === "jaringan") { db = null; dbState = "off"; }
+    if (e && (e.error === "jaringan" || e.error === "offline")) { db = null; dbState = "off"; lastErr = e; }
     refreshStatus();
     if (currentSaveId === a._docId) showSave(e && e.error === "key" ? "Kunci penyimpanan salah. Beri tahu orang tua." : "Belum tersimpan. Nilai aman di perangkat ini dan akan dikirim otomatis saat ada internet.");
   }).then(function () { refreshStatus(); });
@@ -568,7 +602,11 @@ function renderRekap() {
   var pend = lsGet("rl-pending", []).length;
   if (!CFG.API_URL) { $("rNote").textContent = "Penyimpanan belum disambungkan (config.js masih kosong)."; $("rBody").innerHTML = ""; return; }
   if (!parentPin()) { pinForm(); return; }
-  if (!db) { $("rNote").textContent = "Data belum bisa dibaca karena tidak tersambung ke internet. Coba lagi nanti."; $("rBody").innerHTML = ""; return; }
+  if (!db) {
+    if (dbState === "connecting") $("rNote").textContent = "Menyambungkan ke penyimpanan…";
+    else { $("rNote").innerHTML = "Data belum bisa dibaca. " + errHtml(lastErr || { error: navigator.onLine === false ? "offline" : "jaringan" }); bindRetry(); }
+    $("rBody").innerHTML = ""; return;
+  }
   if (!attemptsLoaded) { $("rNote").textContent = "Memuat data…"; return; }
   $("rNote").innerHTML = "Rekap ini dihitung langsung dari setiap jawaban. Data mentah setiap soal tersimpan di " +
     '<a href="' + DRIVE_URL + '" target="_blank" rel="noopener">Google Sheet Ruang Latihan</a>.' +
@@ -653,7 +691,7 @@ function show(v) {
 function route() {
   var h = location.hash || "";
   if (h.indexOf("#p/") === 0) { var id = decodeURIComponent(h.slice(3)); if (!Q || Q.p.id !== id || Q.submitted) openPaket(id); else show("quiz"); }
-  else if (h === "#rekap") { show("rekap"); renderRekap(); if (db) loadAttempts(); window.scrollTo(0, 0); }
+  else if (h === "#rekap") { show("rekap"); renderRekap(); if (db) loadAttempts(); else if (dbState !== "connecting" && CFG.API_URL) connect(); window.scrollTo(0, 0); }
   else { Q = null; show("home"); renderHome(); if (db) loadAttempts(); window.scrollTo(0, 0); }
 }
 $("toRekap").addEventListener("click", function () { location.hash = "#rekap"; });
