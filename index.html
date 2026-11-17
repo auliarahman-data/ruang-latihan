@@ -417,21 +417,79 @@ $("homeList").addEventListener("click", function (e) { var b = e.target.closest(
 /* ===== Quiz ===== */
 var Q = null; /* current quiz state */
 var currentSaveId = null;
-function norm(s) { return String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9؀-ۿ]+/g, " ").trim(); }
-function lev(a, b) { var m = a.length, n = b.length, d = [], i, j; for (i = 0; i <= m; i++) d[i] = [i]; for (j = 0; j <= n; j++) d[0][j] = j; for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
+/* ===== Penilaian isian (aturan diuji di tools/uji_isian.js) =====
+   Prinsip: jawaban yang maknanya sama dengan kunci diterima; jawaban setengah benar,
+   jawaban ganda ("lisan atau tertulis"), jawaban yang diingkari ("tidak tertulis"),
+   dan salinan kalimat panjang tetap salah. */
+function norm(s) { return String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/['‘’`]/g, "").replace(/[^a-z0-9؀-ۿ]+/g, " ").replace(/\b([a-z]{2,})2\b/g, "$1 $1").trim(); }
+/* jarak salah ketik; huruf bertukar tempat dihitung 1 */
+function lev(a, b) { var m = a.length, n = b.length, d = [], i, j; for (i = 0; i <= m; i++) d[i] = [i]; for (j = 0; j <= n; j++) d[0][j] = j; for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) { d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1); } return d[m][n]; }
+var ISIAN_TAMBAH = 4; /* kata tambahan yang masih wajar, mis. "di pasar ikan", "makhluk sosial" */
+var KATA_INGKAR = { tidak: 1, tak: 1, bukan: 1, belum: 1, not: 1 };
+var KATA_SAMBUNG = { atau: 1, dan: 1, or: 1, and: 1 };
+function samaUrutanBebas(a, b) { /* "aman dan tertib" = "tertib dan aman" */
+  if (b.indexOf(" dan ") < 0) return false;
+  var x = a.split(" dan ").map(function (t) { return t.trim(); }).sort().join("|"), y = b.split(" dan ").map(function (t) { return t.trim(); }).sort().join("|");
+  return x === y;
+}
+function cariUrutan(toks, kt) { for (var i = 0; i + kt.length <= toks.length; i++) { var ok = true; for (var j = 0; j < kt.length; j++) if (toks[i + j] !== kt[j]) { ok = false; break; } if (ok) return i; } return -1; }
+/* sisa kata di luar kunci: tidak boleh memuat jawaban keliru, atau pilihan lain dengan "atau" */
+function sisaAman(rest, keys, wrongs) {
+  var restStr = " " + rest.join(" ") + " ";
+  for (var w = 0; w < wrongs.length; w++) if (restStr.indexOf(" " + wrongs[w] + " ") > -1) return false;
+  if (rest.indexOf("atau") > -1 || rest.indexOf("or") > -1) {
+    var lain = rest.filter(function (t) { return !KATA_SAMBUNG[t]; });
+    var semuaKunci = lain.every(function (t) { return keys.some(function (k) { return (" " + k + " ").indexOf(" " + t + " ") > -1; }); });
+    if (!semuaKunci) return false;
+  }
+  return true;
+}
 /* 2 = benar, 1 = benar dengan salah ketik kecil, 0 = salah */
-function checkWord(ans, keys, ketat) {
+function checkWord(ans, keys, ketat, wrongs) {
   var n = norm(ans); if (!n) return 0;
-  keys = keys.map(norm);
+  keys = keys.map(norm).filter(Boolean); wrongs = (wrongs || []).map(norm).filter(Boolean);
+  var flat = n.replace(/ /g, ""), k, i;
   /* ketat: ejaan diuji (mis. Bahasa Inggris) -> harus sama persis, tanpa toleransi salah ketik */
-  if (ketat) { var nf = n.replace(/ /g, ""); for (var q = 0; q < keys.length; q++) if (n === keys[q] || nf === keys[q].replace(/ /g, "")) return 2; return 0; }
-  var toks = n.split(" "), pad = " " + n + " ", flat = n.replace(/ /g, "");
-  for (var k = 0; k < keys.length; k++) if (n === keys[k] || pad.indexOf(" " + keys[k] + " ") > -1) return 2;
-  var cands = toks.concat([flat]);
-  for (k = 0; k < keys.length; k++) { var kf = keys[k].replace(/ /g, ""); if (kf.length < 5) continue; for (var c = 0; c < cands.length; c++) if (lev(cands[c], kf) <= 1) return 1; }
+  if (ketat) { for (k = 0; k < keys.length; k++) if (n === keys[k] || flat === keys[k].replace(/ /g, "")) return 2; return 0; }
+  for (k = 0; k < keys.length; k++) if (n === keys[k] || flat === keys[k].replace(/ /g, "") || samaUrutanBebas(n, keys[k])) return 2;
+  for (k = 0; k < wrongs.length; k++) if (n === wrongs[k] || flat === wrongs[k].replace(/ /g, "")) return 0;
+  var toks = n.split(" ");
+  /* kunci tertulis utuh di dalam jawaban pendek */
+  for (k = 0; k < keys.length; k++) {
+    var kt = keys[k].split(" ");
+    if (toks.length - kt.length > ISIAN_TAMBAH) continue;
+    i = cariUrutan(toks, kt); if (i < 0) continue;
+    if (i > 0 && KATA_INGKAR[toks[i - 1]] && !KATA_INGKAR[kt[0]]) continue;
+    if (sisaAman(toks.slice(0, i).concat(toks.slice(i + kt.length)), keys, wrongs)) return 2;
+  }
+  /* salah ketik kecil: 1 huruf untuk kata 5-9 huruf, 2 huruf untuk kata >= 10 huruf; kata pendek harus tepat */
+  for (k = 0; k < keys.length; k++) {
+    var kf = keys[k].replace(/ /g, ""), tol = kf.length >= 10 ? 2 : kf.length >= 5 ? 1 : 0; if (!tol) continue;
+    var len = keys[k].split(" ").length; if (toks.length - len > ISIAN_TAMBAH) continue;
+    for (i = 0; i + len <= toks.length; i++) {
+      var c = toks.slice(i, i + len).join(""), d = lev(c, kf); if (d > tol) continue;
+      if (i > 0 && KATA_INGKAR[toks[i - 1]]) continue;
+      /* jangan anggap salah ketik bila lebih dekat ke jawaban keliru atau ke kunci lain yang persis */
+      if (wrongs.some(function (w) { return lev(c, w.replace(/ /g, "")) <= d; })) continue;
+      if (sisaAman(toks.slice(0, i).concat(toks.slice(i + len)), keys, wrongs)) return 1;
+    }
+  }
   return 0;
 }
-function checkNum(ans, n) { var s = String(ans).replace(/[.\s]/g, ""); var m = s.match(/-?\d+/); return (m && Number(m[0]) === n) ? 2 : 0; }
+/* angka: "16", "16 buku", "1.000", juga ditulis dengan kata ("enam belas") */
+var ANGKA_KATA = { nol: 0, satu: 1, dua: 2, tiga: 3, empat: 4, lima: 5, enam: 6, tujuh: 7, delapan: 8, sembilan: 9 };
+function kataKeAngka(s) {
+  var toks = norm(s).split(" "), total = 0, cur = 0, small = 0, ada = false;
+  toks.forEach(function (t) {
+    if (ANGKA_KATA[t] != null) { small += ANGKA_KATA[t]; ada = true; }
+    else if (t === "sepuluh") { cur += 10; ada = true; } else if (t === "sebelas") { cur += 11; ada = true; }
+    else if (t === "seratus") { cur += 100; ada = true; } else if (t === "seribu") { total += 1000; ada = true; }
+    else if (t === "belas") { cur += 10 + small; small = 0; } else if (t === "puluh") { cur += small * 10; small = 0; }
+    else if (t === "ratus") { cur += small * 100; small = 0; } else if (t === "ribu") { total += (cur + small) * 1000; cur = small = 0; }
+  });
+  return ada ? total + cur + small : null;
+}
+function checkNum(ans, n) { var s = String(ans).replace(/[.\s]/g, ""); var m = s.match(/-?\d+/); if (m) return Number(m[0]) === n ? 2 : 0; return kataKeAngka(ans) === n ? 2 : 0; }
 function wrongTag(it, ans) {
   if (!it.w) return null; var n = it.n != null ? String(ans).replace(/[.\s]/g, "").match(/-?\d+/) : null;
   var key = it.n != null ? (n ? String(Number(n[0])) : "") : norm(ans);
@@ -529,7 +587,7 @@ function grade() {
   });
   p.isian.forEach(function (s, i) {
     var card = $("is" + i), inp = $("t" + i), ans = inp.value.trim();
-    var r = s.n != null ? checkNum(ans, s.n) : checkWord(ans, s.k || [], s.ketat);
+    var r = s.n != null ? checkNum(ans, s.n) : checkWord(ans, s.k || [], s.ketat, s.w ? Object.keys(s.w) : []);
     inp.disabled = true; if (r > 0) isOk++; if (!ans) kosong++;
     card.classList.add(r > 0 ? "ok" : "no");
     var fb = r === 2 ? '<div class="fb ok">✔ Benar!' : r === 1 ? '<div class="fb near">✔ Benar, tapi perhatikan tulisannya: <b>' + esc(s.a) + "</b>" : '<div class="fb no">' + (ans ? "✘ Belum tepat." : "✘ Tidak dijawab.") + " Jawaban: <b>" + esc(s.a) + "</b>";

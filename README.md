@@ -18,3 +18,10 @@ Artifact lama (https://claude.ai/artifact/ByiexDQnKSEV2fFddbE7aC) TIDAK diubah. 
 
 ## Alur paket baru
 Foto buku -> Claude menyusun paket JSON -> `paket_tool.py add` -> commit & push -> GitHub Pages memperbarui dalam 1-2 menit.
+
+## Penilaian isian (17 Nov 2026)
+Aturan ada di `index.html` (blok "Penilaian isian") dan diuji dengan `node tools/uji_isian.js` (kasus contoh + semua kunci di paket/).
+- Diterima: huruf besar/kecil, tanda baca, tanda hubung, "aba2" = "aba-aba", kata tambahan pendek (maks. 4 kata, mis. "makhluk sosial", "di pasar ikan"), urutan "A dan B" dibalik, dua jawaban dengan "atau" bila keduanya benar, angka ditulis dengan kata ("enam belas").
+- Salah ketik kecil dihitung benar (anak diberi tahu tulisan yang benar): 1 huruf untuk kata 5-9 huruf, 2 huruf untuk kata ≥ 10 huruf, huruf bertukar tempat = 1. Kata < 5 huruf harus tepat. Tidak berlaku bila jawabannya lebih dekat ke jawaban keliru (`w`).
+- Tetap salah: istilah lain yang maknanya berbeda, jawaban yang memuat jawaban keliru (`w`) atau menebak dengan "atau", kunci yang diingkari ("tidak tertulis"), menyalin kalimat panjang.
+- `"ketat": true` (Bahasa Inggris): ejaan harus tepat; hanya huruf besar dan apostrof yang diabaikan.
