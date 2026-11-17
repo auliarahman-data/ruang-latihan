@@ -386,9 +386,11 @@ var currentSaveId = null;
 function norm(s) { return String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9؀-ۿ]+/g, " ").trim(); }
 function lev(a, b) { var m = a.length, n = b.length, d = [], i, j; for (i = 0; i <= m; i++) d[i] = [i]; for (j = 0; j <= n; j++) d[0][j] = j; for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
 /* 2 = benar, 1 = benar dengan salah ketik kecil, 0 = salah */
-function checkWord(ans, keys) {
+function checkWord(ans, keys, ketat) {
   var n = norm(ans); if (!n) return 0;
   keys = keys.map(norm);
+  /* ketat: ejaan diuji (mis. Bahasa Inggris) -> harus sama persis, tanpa toleransi salah ketik */
+  if (ketat) { var nf = n.replace(/ /g, ""); for (var q = 0; q < keys.length; q++) if (n === keys[q] || nf === keys[q].replace(/ /g, "")) return 2; return 0; }
   var toks = n.split(" "), pad = " " + n + " ", flat = n.replace(/ /g, "");
   for (var k = 0; k < keys.length; k++) if (n === keys[k] || pad.indexOf(" " + keys[k] + " ") > -1) return 2;
   var cands = toks.concat([flat]);
@@ -493,7 +495,7 @@ function grade() {
   });
   p.isian.forEach(function (s, i) {
     var card = $("is" + i), inp = $("t" + i), ans = inp.value.trim();
-    var r = s.n != null ? checkNum(ans, s.n) : checkWord(ans, s.k || []);
+    var r = s.n != null ? checkNum(ans, s.n) : checkWord(ans, s.k || [], s.ketat);
     inp.disabled = true; if (r > 0) isOk++; if (!ans) kosong++;
     card.classList.add(r > 0 ? "ok" : "no");
     var fb = r === 2 ? '<div class="fb ok">✔ Benar!' : r === 1 ? '<div class="fb near">✔ Benar, tapi perhatikan tulisannya: <b>' + esc(s.a) + "</b>" : '<div class="fb no">' + (ans ? "✘ Belum tepat." : "✘ Tidak dijawab.") + " Jawaban: <b>" + esc(s.a) + "</b>";
