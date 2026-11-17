@@ -618,9 +618,10 @@ function renderRekap() {
   }
   /* per mapel-bab */
   var bab = {};
-  A.forEach(function (a) { var k = a.mapel + " · Bab " + a.bab; var b = bab[k] = bab[k] || { judul: a.judulBab, n: 0, sum: 0, last: 0, best: 0, firstNew: [] , seen: {} }; b.n++; b.sum += a.nilai; b.last = a.nilai; b.best = Math.max(b.best, a.nilai); if (!b.seen[a.paketId]) { b.seen[a.paketId] = 1; b.firstNew.push(a.nilai); } });
-  h += '<div class="card"><h2>Ringkasan per bab</h2><div class="scroll"><table class="tbl"><thead><tr><th>Mapel / bab</th><th class="num">Dicoba</th><th class="num">Rata-rata</th><th class="num">Terakhir</th><th class="num">Percobaan pertama*</th></tr></thead><tbody>';
-  Object.keys(bab).forEach(function (k) { var b = bab[k], fn = Math.round(b.firstNew.reduce(function (s, x) { return s + x; }, 0) / b.firstNew.length);
+  A.forEach(function (a) { var k = a.mapel + " · Bab " + a.bab; var b = bab[k] = bab[k] || { judul: a.judulBab, n: 0, sum: 0, last: 0, best: 0, firstNew: [] , seen: {} }; b.n++; b.sum += a.nilai; b.last = a.nilai; b.lastAt = String(a.selesai || ""); b.best = Math.max(b.best, a.nilai); if (!b.seen[a.paketId]) { b.seen[a.paketId] = 1; b.firstNew.push(a.nilai); } });
+  h += '<div class="card"><h2>Ringkasan per bab</h2><p class="note" style="margin-top:-4px">Bab yang terakhir dikerjakan ada di atas.</p><div class="scroll"><table class="tbl"><thead><tr><th>Mapel / bab</th><th class="num">Dicoba</th><th class="num">Rata-rata</th><th class="num">Terakhir</th><th class="num">Percobaan pertama*</th></tr></thead><tbody>';
+  // urutan: bab yang terakhir dikerjakan di atas
+  Object.keys(bab).sort(function (x, y) { return bab[y].lastAt.localeCompare(bab[x].lastAt); }).forEach(function (k) { var b = bab[k], fn = Math.round(b.firstNew.reduce(function (s, x) { return s + x; }, 0) / b.firstNew.length);
     h += "<tr><td><b>" + esc(k) + "</b><br><span class=\"note\">" + esc(b.judul) + "</span></td><td class=\"num\">" + b.n + "</td><td class=\"num\">" + Math.round(b.sum / b.n) + "</td><td class=\"num\">" + b.last + "</td><td class=\"num\">" + fn + " " + statusTag(fn) + "</td></tr>"; });
   h += '</tbody></table></div><p class="note">*Rata-rata nilai saat sebuah paket dikerjakan pertama kali. Ini ukuran pemahaman yang lebih jujur, karena nilai pengulangan paket yang sama bisa naik karena hafal soal.</p></div>';
 
