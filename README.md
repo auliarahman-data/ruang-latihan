@@ -25,3 +25,6 @@ Aturan ada di `index.html` (blok "Penilaian isian") dan diuji dengan `node tools
 - Salah ketik kecil dihitung benar (anak diberi tahu tulisan yang benar): 1 huruf untuk kata 5-9 huruf, 2 huruf untuk kata ≥ 10 huruf, huruf bertukar tempat = 1. Kata < 5 huruf harus tepat. Tidak berlaku bila jawabannya lebih dekat ke jawaban keliru (`w`).
 - Tetap salah: istilah lain yang maknanya berbeda, jawaban yang memuat jawaban keliru (`w`) atau menebak dengan "atau", kunci yang diingkari ("tidak tertulis"), menyalin kalimat panjang.
 - `"ketat": true` (Bahasa Inggris): ejaan harus tepat; hanya huruf besar dan apostrof yang diabaikan.
+
+## Teks Arab (18 Nov 2026)
+Teks Arab di soal dibungkus `<span class="ar" lang="ar" dir="rtl">…</span>`; kelas `.ar` di `index.html` memperbesar huruf (1.5em) agar harakat terbaca dan menjaga satu kalimat tetap utuh. Paket Bahasa Arab: `ARB-G-P1..P4` (bab "Gabungan", dari foto hal 4-9, 20-23, 40-41).
