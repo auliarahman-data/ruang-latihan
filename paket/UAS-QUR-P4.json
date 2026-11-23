@@ -1,0 +1,377 @@
+{
+ "id": "UAS-QUR-P4",
+ "mapel": "Al-Qur'an",
+ "kelas": 3,
+ "folder": "Latihan UAS",
+ "bab": "UAS",
+ "judulBab": "Latihan UAS Semester 1",
+ "sumber": "Kisi-kisi Asesmen Sumatif Akhir Semester 1 Al-Qur'an, SD Islam Sabilal Muhtadin, TA 2026-2027",
+ "dibuat": "2026-11-23",
+ "uji": false,
+ "paket": 4,
+ "mk": {
+  "QUR-izhar-idgham": "Izhar dan idgham tertukar",
+  "QUR-bi-bila": "Idgham bighunnah dan idgham bilaghunnah tertukar (dengan/tanpa dengung)",
+  "QUR-huruf-tertukar": "Huruf kelompok hukum bacaan tertukar (halqi, ي ن م و, ل ر)",
+  "QUR-jumlah-huruf": "Jumlah huruf hukum bacaan salah",
+  "QUR-cara-baca": "Cara membaca tertukar (jelas, dilebur, dengung)",
+  "QUR-istilah": "Arti istilah tajwid tertukar",
+  "QUR-huruf-mirip": "Bentuk huruf hijaiyah mirip tertukar",
+  "QUR-jumlah-ayat": "Jumlah atau nomor ayat salah"
+ },
+ "pg": [
+  {
+   "id": "P01",
+   "sub": "Izhar halqi",
+   "lv": "C1",
+   "q": "Pernyataan yang TIDAK benar tentang izhar adalah ....",
+   "o": [
+    "nun sukun atau tanwin dilebur ke huruf sesudahnya",
+    "izhar artinya jelas",
+    "izhar dibaca tanpa dengung",
+    "izhar halqi terjadi karena bertemu huruf halqi"
+   ],
+   "m": [
+    null,
+    "QUR-istilah",
+    "QUR-cara-baca",
+    "QUR-huruf-tertukar"
+   ],
+   "e": "Yang tidak benar: dilebur. Dilebur adalah ciri idgham. Izhar dibaca jelas tanpa dengung."
+  },
+  {
+   "id": "P02",
+   "sub": "Izhar halqi",
+   "lv": "C2",
+   "q": "Saat membaca izhar halqi, nun sukun atau tanwin dibaca dengan ....",
+   "o": [
+    "suara nun yang jelas, lalu langsung ke huruf sesudahnya",
+    "suara mendengung yang ditahan",
+    "suara nun yang dimasukkan ke huruf sesudahnya",
+    "suara nun yang tidak dibaca"
+   ],
+   "m": [
+    null,
+    "QUR-cara-baca",
+    "QUR-izhar-idgham",
+    "QUR-cara-baca"
+   ],
+   "e": "Izhar halqi: nun sukun atau tanwin bertemu huruf halqi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء ه ع ح غ خ</span>, dibaca jelas tanpa dengung."
+  },
+  {
+   "id": "P03",
+   "sub": "Izhar halqi",
+   "lv": "C1",
+   "q": "Manakah yang jumlahnya 6 huruf?",
+   "o": [
+    "huruf izhar halqi",
+    "huruf idgham bighunnah",
+    "huruf idgham bilaghunnah",
+    "huruf hijaiyah"
+   ],
+   "m": [
+    null,
+    "QUR-jumlah-huruf",
+    "QUR-jumlah-huruf",
+    "QUR-jumlah-huruf"
+   ],
+   "e": "Izhar halqi 6 huruf, idgham bighunnah 4 huruf, idgham bilaghunnah 2 huruf."
+  },
+  {
+   "id": "P04",
+   "sub": "Izhar halqi",
+   "lv": "C1",
+   "q": "Pasangan huruf berikut yang termasuk huruf izhar halqi adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">خ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">غ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">و</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ن</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">م</span>"
+   ],
+   "m": [
+    null,
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar"
+   ],
+   "e": "Izhar halqi: nun sukun atau tanwin bertemu huruf halqi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء ه ع ح غ خ</span>, dibaca jelas tanpa dengung."
+  },
+  {
+   "id": "P05",
+   "sub": "Izhar halqi",
+   "lv": "C2",
+   "q": "Fatimah menemukan tanwin yang bertemu huruf hamzah <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء</span>. Hukum bacaan yang ia pakai adalah ....",
+   "o": [
+    "izhar halqi",
+    "idgham bighunnah",
+    "idgham bilaghunnah"
+   ],
+   "m": [
+    null,
+    "QUR-izhar-idgham",
+    "QUR-izhar-idgham"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء</span> huruf halqi. Izhar halqi: nun sukun atau tanwin bertemu huruf halqi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء ه ع ح غ خ</span>, dibaca jelas tanpa dengung."
+  },
+  {
+   "id": "P09",
+   "sub": "Idgham bighunnah",
+   "lv": "C1",
+   "q": "Apa beda idgham dan izhar?",
+   "o": [
+    "idgham dilebur, izhar dibaca jelas",
+    "idgham dibaca jelas, izhar dilebur",
+    "keduanya dibaca jelas",
+    "keduanya dilebur"
+   ],
+   "m": [
+    null,
+    "QUR-izhar-idgham",
+    "QUR-izhar-idgham",
+    "QUR-izhar-idgham"
+   ],
+   "e": "Idgham = dilebur. Izhar = jelas."
+  },
+  {
+   "id": "P10",
+   "sub": "Idgham bighunnah",
+   "lv": "C1",
+   "q": "Lawan dari bighunnah (dengan dengung) adalah ....",
+   "o": [
+    "bilaghunnah (tanpa dengung)",
+    "halqi (tenggorokan)",
+    "izhar (jelas)",
+    "idgham (lebur)"
+   ],
+   "m": [
+    null,
+    "QUR-istilah",
+    "QUR-izhar-idgham",
+    "QUR-istilah"
+   ],
+   "e": "Bighunnah = dengan dengung, bilaghunnah = tanpa dengung."
+  },
+  {
+   "id": "P11",
+   "sub": "Idgham bighunnah",
+   "lv": "C2",
+   "q": "Cara membaca idgham bighunnah adalah ....",
+   "o": [
+    "dilebur ke huruf sesudahnya dengan dengung",
+    "dilebur ke huruf sesudahnya tanpa dengung",
+    "dibaca jelas tanpa dengung",
+    "dibaca jelas dengan dengung"
+   ],
+   "m": [
+    null,
+    "QUR-bi-bila",
+    "QUR-izhar-idgham",
+    "QUR-cara-baca"
+   ],
+   "e": "Idgham bighunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م و</span>, dilebur ke huruf sesudahnya dengan dengung."
+  },
+  {
+   "id": "P12",
+   "sub": "Idgham bighunnah",
+   "lv": "C1",
+   "q": "Lengkapi huruf idgham bighunnah berikut: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م</span> dan ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">و</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ه</span>"
+   ],
+   "m": [
+    null,
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar"
+   ],
+   "e": "Idgham bighunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م و</span>, dilebur ke huruf sesudahnya dengan dengung."
+  },
+  {
+   "id": "P13",
+   "sub": "Idgham bighunnah",
+   "lv": "C2",
+   "q": "Umar menemukan nun sukun <span class=\"ar\" lang=\"ar\" dir=\"rtl\">نْ</span> di akhir kata yang bertemu huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ن</span> di awal kata berikutnya. Hukum bacaannya adalah ....",
+   "o": [
+    "idgham bighunnah",
+    "izhar halqi",
+    "idgham bilaghunnah"
+   ],
+   "m": [
+    null,
+    "QUR-izhar-idgham",
+    "QUR-bi-bila"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ن</span> huruf idgham bighunnah. Idgham bighunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م و</span>, dilebur ke huruf sesudahnya dengan dengung."
+  },
+  {
+   "id": "P17",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C1",
+   "q": "Pernyataan yang TIDAK benar tentang idgham bilaghunnah adalah ....",
+   "o": [
+    "dibaca dengan dengung",
+    "artinya memasukkan tanpa dengung",
+    "hurufnya <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>",
+    "nun sukun atau tanwin dilebur ke huruf sesudahnya"
+   ],
+   "m": [
+    null,
+    "QUR-istilah",
+    "QUR-huruf-tertukar",
+    "QUR-cara-baca"
+   ],
+   "e": "Yang tidak benar: dibaca dengan dengung. Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung."
+  },
+  {
+   "id": "P18",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C2",
+   "q": "Bacaan idgham bilaghunnah yang benar ditandai dengan ....",
+   "o": [
+    "tidak ada suara dengung",
+    "ada suara dengung",
+    "suara nun terdengar jelas",
+    "huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span> dibaca samar"
+   ],
+   "m": [
+    null,
+    "QUR-bi-bila",
+    "QUR-izhar-idgham",
+    "QUR-cara-baca"
+   ],
+   "e": "Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung."
+  },
+  {
+   "id": "P19",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C2",
+   "q": "Aisyah menemukan tanwin yang bertemu huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span>. Hukum bacaan yang ia pakai adalah ....",
+   "o": [
+    "idgham bilaghunnah",
+    "izhar halqi",
+    "idgham bighunnah"
+   ],
+   "m": [
+    null,
+    "QUR-izhar-idgham",
+    "QUR-bi-bila"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span> huruf idgham bilaghunnah. Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung."
+  },
+  {
+   "id": "P20",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C1",
+   "q": "Huruf idgham bilaghunnah yang dibaca \"ra\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ز</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">د</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span>"
+   ],
+   "m": [
+    null,
+    "QUR-huruf-mirip",
+    "QUR-huruf-mirip",
+    "QUR-huruf-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span> (ra) tanpa titik. <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ز</span> (zai) bertitik. Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung."
+  },
+  {
+   "id": "P24",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C2",
+   "q": "Dua pertemuan berikut sama-sama idgham bilaghunnah, yaitu ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">نْ</span> bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>, tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">نْ</span> bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>, tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">نْ</span> bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ن</span>, tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">نْ</span> bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء</span>, tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ر</span>"
+   ],
+   "m": [
+    null,
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar",
+    "QUR-huruf-tertukar"
+   ],
+   "e": "Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung."
+  },
+  {
+   "id": "P35",
+   "sub": "QS. Al-Fajr",
+   "lv": "C1",
+   "q": "Pernyataan yang benar tentang Surah Al-Fajr adalah ....",
+   "o": [
+    "terdiri dari 30 ayat",
+    "terdiri dari 20 ayat",
+    "terdiri dari 25 ayat",
+    "terdiri dari 40 ayat"
+   ],
+   "m": [
+    null,
+    "QUR-jumlah-ayat",
+    "QUR-jumlah-ayat",
+    "QUR-jumlah-ayat"
+   ],
+   "e": "Surah Al-Fajr terdiri dari 30 ayat."
+  }
+ ],
+ "isian": [
+  {
+   "id": "I36",
+   "sub": "Nun sukun dan tanwin",
+   "lv": "C2",
+   "q": "Apa nama hukum bacaan bila tanwin bertemu huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">غ</span>?",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">غ</span> huruf halqi. Izhar halqi: nun sukun atau tanwin bertemu huruf halqi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء ه ع ح غ خ</span>, dibaca jelas tanpa dengung.",
+   "k": [
+    "izhar halqi",
+    "izhar"
+   ],
+   "a": "izhar halqi",
+   "w": {
+    "idgham bighunnah": "QUR-izhar-idgham",
+    "idgham bilaghunnah": "QUR-izhar-idgham"
+   }
+  },
+  {
+   "id": "I37",
+   "sub": "Izhar halqi",
+   "lv": "C2",
+   "q": "Saat membaca izhar halqi, apakah nun sukun didengungkan? Jawab <b>ya</b> atau <b>tidak</b>.",
+   "e": "Izhar halqi: nun sukun atau tanwin bertemu huruf halqi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ء ه ع ح غ خ</span>, dibaca jelas tanpa dengung.",
+   "k": [
+    "tidak"
+   ],
+   "a": "tidak",
+   "w": {
+    "ya": "QUR-cara-baca"
+   }
+  },
+  {
+   "id": "I38",
+   "sub": "Idgham bighunnah",
+   "lv": "C2",
+   "q": "Idgham bighunnah terjadi karena nun sukun atau ... bertemu huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م و</span>.",
+   "e": "Idgham bighunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ي ن م و</span>, dilebur ke huruf sesudahnya dengan dengung.",
+   "k": [
+    "tanwin"
+   ],
+   "a": "tanwin",
+   "w": {
+    "mim sukun": "QUR-istilah"
+   }
+  },
+  {
+   "id": "I39",
+   "sub": "Idgham bilaghunnah",
+   "lv": "C1",
+   "q": "Huruf idgham bighunnah ada 4, sedangkan huruf idgham bilaghunnah ada ....",
+   "e": "Idgham bilaghunnah: nun sukun atau tanwin bertemu <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ر</span>, dilebur ke huruf sesudahnya tanpa dengung.",
+   "n": 2,
+   "a": "2"
+  }
+ ]
+}
