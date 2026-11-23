@@ -70,6 +70,13 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.15; m
 .empty { background: var(--card); border: 2px dashed var(--line); border-radius: 20px; padding: 22px 18px; text-align: center; color: var(--muted); }
 .empty b { display: block; color: var(--ink); font-family: var(--display); font-size: 20px; margin-bottom: 4px; }
 .foot { margin-top: 30px; text-align: center; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.tab { display: flex; align-items: center; gap: 10px; text-align: left; background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 12px 14px; font: inherit; color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent; min-height: 64px; box-shadow: var(--shadow); }
+.tab svg { width: 30px; height: 30px; flex: 0 0 auto; }
+.tab b { display: block; font-family: var(--display); font-size: 18px; line-height: 1.15; }
+.tab small { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
+.tab[aria-selected="true"] { border-color: var(--pri); background: var(--pri-soft); }
+.tab:focus-visible { outline: 3px solid var(--pri); outline-offset: 2px; }
 a { color: var(--pri); }
 .linkbtn { background: none; border: 0; color: var(--pri); font-weight: 800; text-decoration: underline; cursor: pointer; padding: 8px; }
 
@@ -172,6 +179,7 @@ p.part { margin: 0 4px 12px; color: var(--muted); font-size: 16px; }
         <circle cx="58" cy="20" r="12" fill="var(--sun)"/>
       </svg>
     </header>
+    <div class="tabs" id="homeTabs" role="tablist"></div>
     <div id="homeList"></div>
     <div class="foot"><button class="linkbtn" type="button" id="toRekap">Untuk orang tua: rekap hasil</button></div>
   </section>
@@ -368,7 +376,12 @@ document.addEventListener("visibilitychange", function () { if (!document.hidden
 setInterval(function () { if (lsGet("rl-pending", []).length) { if (!db) connect(); else flushPending(); } }, 60000);
 
 /* ===== Home ===== */
-var MAPEL_ORDER = ["Matematika", "IPAS", "Bahasa Indonesia", "Pendidikan Pancasila", "Bahasa Inggris", "Bahasa Arab", "Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "SKI"];
+var MAPEL_ORDER = ["Matematika", "IPAS", "Bahasa Indonesia", "Pendidikan Pancasila", "Bahasa Inggris", "Bahasa Arab", "Al-Qur'an", "Al-Qur'an Hadis", "PAI", "Akidah Akhlak", "Fikih", "SKI", "Seni Budaya"];
+/* Folder "Latihan UAS": paket berawalan UAS- (atau folder "Latihan UAS") tampil terpisah dari paket per bab. */
+function isUAS(p) { return !!p && (String(p.paketId || p.id || "").indexOf("UAS-") === 0 || p.folder === "Latihan UAS" || p.bab === "UAS"); }
+function babLabel(a) { return isUAS(a) ? "Latihan UAS" : "Bab " + a.bab; }
+var FOLDER = "bab";
+function homeHash() { return (Q && isUAS(Q.p)) || (!Q && FOLDER === "uas") ? "#uas" : ""; }
 function statsFor(pid) {
   if (!attemptsLoaded) {
     var pq = lsGet("rl-pending", []).filter(function (a) { return a.paketId === pid; });
@@ -382,24 +395,35 @@ function statsFor(pid) {
   if (!all.length) { var l = lsGet("rl-last", {})[pid]; return l ? { n: l.ke || 1, last: l.nilai } : { n: 0 }; }
   return { n: all.length, last: all[all.length - 1].nilai, best: Math.max.apply(null, all.map(function (a) { return a.nilai; })) };
 }
+function folderIcon(c) { return '<svg viewBox="0 0 30 30" aria-hidden="true"><path d="M3 8a3 3 0 0 1 3-3h6l3 3h9a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" fill="' + c + '"/></svg>'; }
+function renderTabs() {
+  var nb = PAKETS.filter(function (p) { return !isUAS(p); }).length, nu = PAKETS.filter(isUAS).length;
+  $("homeTabs").innerHTML =
+    '<button class="tab" type="button" role="tab" data-f="bab" aria-selected="' + (FOLDER === "bab") + '">' + folderIcon("var(--pri)") + '<span><b>Latihan per Bab</b><small>' + nb + ' paket</small></span></button>' +
+    '<button class="tab" type="button" role="tab" data-f="uas" aria-selected="' + (FOLDER === "uas") + '">' + folderIcon("var(--sun)") + '<span><b>Latihan UAS</b><small>' + (nu ? nu + " paket" : "Segera hadir") + '</small></span></button>';
+}
+$("homeTabs").addEventListener("click", function (e) { var b = e.target.closest(".tab"); if (b) location.hash = b.getAttribute("data-f") === "uas" ? "#uas" : ""; });
 function renderHome() {
+  renderTabs();
+  var uas = FOLDER === "uas";
   var groups = {};
-  PAKETS.forEach(function (p) { var g = p.uji ? "Uji coba" : p.mapel; (groups[g] = groups[g] || []).push(p); });
+  PAKETS.forEach(function (p) { if (isUAS(p) !== uas) return; var g = p.uji ? "Uji coba" : p.mapel; (groups[g] = groups[g] || []).push(p); });
   var names = Object.keys(groups).sort(function (a, b) {
     var ia = a === "Uji coba" ? 999 : (MAPEL_ORDER.indexOf(a) < 0 ? 500 : MAPEL_ORDER.indexOf(a));
     var ib = b === "Uji coba" ? 999 : (MAPEL_ORDER.indexOf(b) < 0 ? 500 : MAPEL_ORDER.indexOf(b));
     return ia - ib || a.localeCompare(b);
   });
-  var real = PAKETS.filter(function (p) { return !p.uji; }).length;
+  var real = PAKETS.filter(function (p) { return !p.uji && isUAS(p) === uas; }).length;
   var h = "";
-  if (!real) h += '<div class="sec"><div class="empty"><b>Paket latihan baru akan muncul di sini</b>Setiap bab yang sedang dipelajari di sekolah akan ditambahkan sebagai paket.</div></div>';
+  if (!real) h += uas ? '<div class="sec"><div class="empty"><b>Paket Latihan UAS sedang disiapkan</b>Setiap pelajaran akan punya Paket 1 sampai 5 di sini.</div></div>'
+    : '<div class="sec"><div class="empty"><b>Paket latihan baru akan muncul di sini</b>Setiap bab yang sedang dipelajari di sekolah akan ditambahkan sebagai paket.</div></div>';
   names.forEach(function (g) {
     var babs = {};
     groups[g].forEach(function (p) { var k = p.bab + "|" + p.judulBab; (babs[k] = babs[k] || []).push(p); });
     h += '<div class="sec"><h2><span class="dot" aria-hidden="true"></span>' + esc(g) + '</h2>';
-    Object.keys(babs).sort(function (a, b) { return parseInt(a) - parseInt(b); }).forEach(function (k) {
+    Object.keys(babs).sort(function (a, b) { return (parseInt(a) || 0) - (parseInt(b) || 0) || a.localeCompare(b); }).forEach(function (k) {
       var ps = babs[k].sort(function (a, b) { return a.paket - b.paket; }), p0 = ps[0];
-      h += '<div class="bab"><h3>' + (p0.uji ? "" : "<small>Bab " + esc(p0.bab) + "</small>") + esc(p0.judulBab) + '</h3>';
+      h += '<div class="bab"><h3>' + (p0.uji || isUAS(p0) ? "" : "<small>" + esc(babLabel(p0)) + "</small>") + esc(p0.judulBab) + '</h3>';
       if (p0.uji) h += '<p class="note" style="margin:-4px 2px 10px">Kerjakan sekali untuk memastikan nilai tersimpan. Tidak dihitung dalam rekap.</p>';
       h += '<div class="pk">';
       ps.forEach(function (p) {
@@ -501,7 +525,7 @@ function isNeg(q) { return /\b(TIDAK|BUKAN|KECUALI|SALAH)\b/.test(plain(q)); }
 function openPaket(id) {
   var p = BYID[id]; if (!p) { location.hash = ""; return; }
   Q = { p: p, order: p.pg.map(function (m) { return shuffle(m.o.map(function (_, j) { return j; })); }), start: Date.now(), first: {}, firstAns: {}, changes: {}, submitted: false };
-  $("qEyebrow").textContent = p.uji ? "Uji coba" : p.mapel + " · Bab " + p.bab;
+  $("qEyebrow").textContent = p.uji ? "Uji coba" : p.mapel + " · " + babLabel(p);
   $("qTitle").textContent = (p.uji ? "" : p.judulBab + " · ") + "Paket " + p.paket;
   var chips = []; if (p.pg.length) chips.push(p.pg.length + " pilihan ganda"); if (p.isian.length) chips.push(p.isian.length + " isian"); chips.push("Nilai maks. 100");
   $("qChips").innerHTML = chips.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("");
@@ -624,7 +648,7 @@ function grade() {
     '<p class="note" style="margin:12px 0 0">' + (wrong > 0 ? "Gulir ke bawah untuk membaca " + wrong + " soal yang masih salah (kotak merah) beserta penjelasannya." : "Semua jawaban benar!") + "</p>" +
     '<div class="save" id="saveMsg">' + (db ? "Menyimpan…" : "Nilai disimpan di perangkat ini dan akan dikirim saat tersambung.") + "</div>" +
     '<div class="acts"><button class="btn ghost" type="button" id="rHome">Daftar paket</button><button class="btn" type="button" id="rAgain">Ulangi</button></div></div>';
-  $("rHome").onclick = function () { location.hash = ""; };
+  $("rHome").onclick = function () { location.hash = homeHash(); };
   $("rAgain").onclick = function () { openPaket(p.id); };
   $("mainBtn").textContent = "Ulangi";
   progress(); refreshStatus();
@@ -640,7 +664,7 @@ function openModal(mode, left) {
   else { $("mTitle").textContent = "Masih ada soal kosong"; $("mText").textContent = "Ada " + left + " soal yang belum dijawab. Soal kosong mendapat nilai 0."; $("mBack").textContent = "Kerjakan lagi"; $("mGo").textContent = "Tetap kumpulkan"; }
   $("modal").classList.add("show");
 }
-$("mGo").addEventListener("click", function () { if (modalMode === "leave") { $("modal").classList.remove("show"); Q = null; location.hash = ""; } else grade(); });
+$("mGo").addEventListener("click", function () { if (modalMode === "leave") { $("modal").classList.remove("show"); var hh = homeHash(); Q = null; location.hash = hh; } else grade(); });
 $("mBack").addEventListener("click", function () {
   $("modal").classList.remove("show");
   if (modalMode === "leave") return;
@@ -649,7 +673,7 @@ $("mBack").addEventListener("click", function () {
 });
 $("qBack").addEventListener("click", function () {
   if (Q && !Q.submitted && answered() > 0) { openModal("leave"); return; }
-  location.hash = "";
+  location.hash = homeHash();
 });
 
 /* ===== Parent recap ===== */
@@ -677,7 +701,7 @@ function renderRekap() {
   }
   /* per mapel-bab */
   var bab = {};
-  A.forEach(function (a) { var k = a.mapel + " · Bab " + a.bab; var b = bab[k] = bab[k] || { judul: a.judulBab, n: 0, sum: 0, last: 0, best: 0, firstNew: [] , seen: {} }; b.n++; b.sum += a.nilai; b.last = a.nilai; b.lastAt = String(a.selesai || ""); b.best = Math.max(b.best, a.nilai); if (!b.seen[a.paketId]) { b.seen[a.paketId] = 1; b.firstNew.push(a.nilai); } });
+  A.forEach(function (a) { var k = a.mapel + " · " + babLabel(a); var b = bab[k] = bab[k] || { judul: a.judulBab, n: 0, sum: 0, last: 0, best: 0, firstNew: [] , seen: {} }; b.n++; b.sum += a.nilai; b.last = a.nilai; b.lastAt = String(a.selesai || ""); b.best = Math.max(b.best, a.nilai); if (!b.seen[a.paketId]) { b.seen[a.paketId] = 1; b.firstNew.push(a.nilai); } });
   h += '<div class="card"><h2>Ringkasan per bab</h2><p class="note" style="margin-top:-4px">Bab yang terakhir dikerjakan ada di atas.</p><div class="scroll"><table class="tbl"><thead><tr><th>Mapel / bab</th><th class="num">Dicoba</th><th class="num">Rata-rata</th><th class="num">Terakhir</th><th class="num">Percobaan pertama*</th></tr></thead><tbody>';
   // urutan: bab yang terakhir dikerjakan di atas
   Object.keys(bab).sort(function (x, y) { return bab[y].lastAt.localeCompare(bab[x].lastAt); }).forEach(function (k) { var b = bab[k], fn = Math.round(b.firstNew.reduce(function (s, x) { return s + x; }, 0) / b.firstNew.length);
@@ -705,10 +729,10 @@ function renderRekap() {
 
   /* subtopics */
   var sub = {};
-  A.forEach(function (a) { (a.items || []).forEach(function (it) { var k = a.mapel + "|" + a.bab + "|" + (it.sub || "(tanpa subtopik)"); var s = sub[k] = sub[k] || { n: 0, ok: 0 }; s.n++; if (it.benar) s.ok++; }); });
+  A.forEach(function (a) { (a.items || []).forEach(function (it) { var k = a.mapel + "|" + babLabel(a) + "|" + (it.sub || "(tanpa subtopik)"); var s = sub[k] = sub[k] || { n: 0, ok: 0 }; s.n++; if (it.benar) s.ok++; }); });
   var subs = Object.keys(sub).map(function (k) { var p = k.split("|"); return { mapel: p[0], bab: p[1], sub: p[2], n: sub[k].n, ok: sub[k].ok, p: pct(sub[k].ok, sub[k].n) }; }).sort(function (x, y) { return x.p - y.p; });
   h += '<div class="card"><h2>Per subtopik</h2><div class="scroll"><table class="tbl"><thead><tr><th>Subtopik</th><th class="num">Benar</th><th class="num">%</th><th>Status</th></tr></thead><tbody>';
-  subs.forEach(function (s) { h += "<tr><td><b>" + esc(s.sub) + "</b><br><span class=\"note\">" + esc(s.mapel) + " · Bab " + esc(s.bab) + "</span></td><td class=\"num\">" + s.ok + "/" + s.n + "</td><td class=\"num\">" + s.p + "</td><td>" + (s.n < 4 ? '<span class="tag gray">Data sedikit</span>' : statusTag(s.p)) + "</td></tr>"; });
+  subs.forEach(function (s) { h += "<tr><td><b>" + esc(s.sub) + "</b><br><span class=\"note\">" + esc(s.mapel) + " · " + esc(s.bab) + "</span></td><td class=\"num\">" + s.ok + "/" + s.n + "</td><td class=\"num\">" + s.p + "</td><td>" + (s.n < 4 ? '<span class="tag gray">Data sedikit</span>' : statusTag(s.p)) + "</td></tr>"; });
   h += "</tbody></table></div></div>";
 
   /* negation words */
@@ -724,7 +748,7 @@ function historyHtml(list) {
   if (!L.length) return "";
   var h = '<div class="card"><h2>Riwayat percobaan</h2><div class="hist">';
   L.forEach(function (a, idx) {
-    h += '<button class="hrow" type="button" data-i="' + idx + '"><span><b>' + esc(a.uji ? "Uji coba" : a.mapel + " Bab " + a.bab + " · Paket " + a.paket) + "</b><small>" + esc(fmtDate(a.selesai)) + " WITA · percobaan ke-" + esc(a.percobaanKe || "?") + " · " + Math.round((a.durasiDetik || 0) / 60) + " menit · " + esc(a.perangkat || "") + "</small></span><span class=\"sc\">" + esc(a.nilai) + "</span></button>";
+    h += '<button class="hrow" type="button" data-i="' + idx + '"><span><b>' + esc(a.uji ? "Uji coba" : a.mapel + " " + babLabel(a) + " · Paket " + a.paket) + "</b><small>" + esc(fmtDate(a.selesai)) + " WITA · percobaan ke-" + esc(a.percobaanKe || "?") + " · " + Math.round((a.durasiDetik || 0) / 60) + " menit · " + esc(a.perangkat || "") + "</small></span><span class=\"sc\">" + esc(a.nilai) + "</span></button>";
     h += '<div class="detail" id="d' + idx + '" hidden></div>';
   });
   h += "</div></div>";
@@ -752,10 +776,10 @@ function route() {
   var h = location.hash || "";
   if (h.indexOf("#p/") === 0) { var id = decodeURIComponent(h.slice(3)); if (!Q || Q.p.id !== id || Q.submitted) openPaket(id); else show("quiz"); }
   else if (h === "#rekap") { show("rekap"); renderRekap(); if (db) loadAttempts(); else if (dbState !== "connecting" && CFG.API_URL) connect(); window.scrollTo(0, 0); }
-  else { Q = null; show("home"); renderHome(); if (db) loadAttempts(); window.scrollTo(0, 0); }
+  else { Q = null; FOLDER = h === "#uas" ? "uas" : "bab"; show("home"); renderHome(); if (db) loadAttempts(); window.scrollTo(0, 0); }
 }
 $("toRekap").addEventListener("click", function () { location.hash = "#rekap"; });
-$("rBack").addEventListener("click", function () { location.hash = ""; });
+$("rBack").addEventListener("click", function () { location.hash = homeHash(); });
 window.addEventListener("hashchange", route);
 refreshStatus();
 loadPakets().then(function () { route(); connect(); });

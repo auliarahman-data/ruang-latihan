@@ -1,0 +1,759 @@
+{
+ "id": "UAS-PPKN-P1",
+ "mapel": "Pendidikan Pancasila",
+ "kelas": 3,
+ "folder": "Latihan UAS",
+ "bab": "UAS",
+ "judulBab": "Latihan UAS Semester 1",
+ "paket": 1,
+ "sumber": "Kisi-kisi ASAS Semester 1 Pancasila kelas III TA 2026-2027 no. 1-40; Pendidikan Pancasila SDBI kelas III Bab 1 (belum difoto) dan Bab 2 hlm. 31-63",
+ "dibuat": "2026-11-23",
+ "uji": false,
+ "mk": {
+  "PPKN-lambang-sila-tertukar": "Lambang, bunyi, atau makna sila Pancasila tertukar",
+  "PPKN-sila-pengamalan-tertukar": "Contoh perilaku dihubungkan dengan sila yang salah",
+  "PPKN-sikap-keliru-dianggap-baik": "Sikap tidak terpuji (egois, mudah menyerah, memaksakan kehendak, curang) dianggap tepat",
+  "PPKN-hak-kewajiban-tertukar": "Hak dan kewajiban tertukar",
+  "PPKN-rumah-sekolah-tertukar": "Aturan, hak, atau kewajiban di rumah dan di sekolah tertukar",
+  "PPKN-melanggar-dianggap-benar": "Perilaku yang melanggar aturan dianggap boleh atau benar",
+  "PPKN-tujuan-aturan": "Tujuan aturan atau akibat melanggarnya dipahami keliru (misalnya aturan untuk menghukum atau menyusahkan)"
+ },
+ "pg": [
+  {
+   "id": "P01",
+   "sub": "Lambang dan bunyi sila Pancasila",
+   "lv": "C1",
+   "q": "Lambang sila pertama Pancasila adalah ....",
+   "o": [
+    "bintang",
+    "rantai",
+    "pohon beringin",
+    "kepala banteng"
+   ],
+   "m": [
+    null,
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar"
+   ],
+   "e": "Sila pertama dilambangkan dengan bintang."
+  },
+  {
+   "id": "P02",
+   "sub": "Lambang dan bunyi sila Pancasila",
+   "lv": "C1",
+   "q": "Bunyi sila ketiga Pancasila adalah ....",
+   "o": [
+    "Persatuan Indonesia",
+    "Ketuhanan Yang Maha Esa",
+    "Kemanusiaan yang adil dan beradab",
+    "Kerakyatan yang dipimpin oleh hikmat kebijaksanaan"
+   ],
+   "m": [
+    null,
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar"
+   ],
+   "e": "Sila ketiga berbunyi \"Persatuan Indonesia\"."
+  },
+  {
+   "id": "P03",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C3",
+   "q": "Perhatikan gambar. Tindakan Bilal yang sesuai dengan pengamalan sila pertama adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Azan zuhur berkumandang dari masjid. Bilal sedang asyik bermain bola bersama teman-temannya.</div>",
+   "o": [
+    "berhenti bermain, lalu berwudu dan salat",
+    "meneruskan bermain sampai puas",
+    "pura-pura tidak mendengar azan",
+    "menunggu azan asar baru salat"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Sila pertama mengajarkan kita taat beribadah. Saat azan berkumandang, kita berhenti bermain lalu salat."
+  },
+  {
+   "id": "P04",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C3",
+   "q": "Perhatikan gambar. Tindakan yang sesuai dengan pengamalan sila kedua adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Seorang teman jatuh dari sepeda di halaman sekolah. Lututnya luka dan ia menangis.</div>",
+   "o": [
+    "menolong dan mengantarnya ke UKS",
+    "menertawakan teman yang jatuh",
+    "pergi dan membiarkannya",
+    "menyuruhnya berhenti menangis"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Sila kedua mengajarkan kita saling menyayangi dan menolong sesama manusia."
+  },
+  {
+   "id": "P05",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Contoh pengamalan sila pertama di sekolah adalah ....",
+   "o": [
+    "berdoa bersama sebelum pelajaran dimulai",
+    "berbicara saat teman sedang berdoa",
+    "tidak ikut salat duha karena malas",
+    "mengganggu teman yang sedang salat"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Berdoa bersama sebelum belajar adalah pengamalan sila pertama."
+  },
+  {
+   "id": "P06",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Contoh pengamalan sila kelima di sekolah adalah ....",
+   "o": [
+    "membagi tugas piket kelas secara adil",
+    "menyuruh teman yang sama piket setiap hari",
+    "pulang diam-diam saat jadwal piket",
+    "menyapu bagian sendiri lalu mengotori bagian teman"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Sila kelima mengajarkan keadilan, misalnya membagi tugas piket secara adil."
+  },
+  {
+   "id": "P07",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Kegiatan keluarga pada gambar sesuai dengan pengamalan sila ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Ayah, Bunda, kakak, dan adik salat magrib berjamaah di rumah.</div>",
+   "o": [
+    "pertama",
+    "kedua",
+    "ketiga",
+    "kelima"
+   ],
+   "m": [
+    null,
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar"
+   ],
+   "e": "Beribadah bersama keluarga adalah pengamalan sila pertama, Ketuhanan Yang Maha Esa."
+  },
+  {
+   "id": "P08",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Rajin beribadah dan bersyukur kepada Allah Swt. adalah pengamalan sila ....",
+   "o": [
+    "pertama",
+    "kedua",
+    "ketiga",
+    "keempat"
+   ],
+   "m": [
+    null,
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar"
+   ],
+   "e": "Rajin beribadah adalah pengamalan sila pertama."
+  },
+  {
+   "id": "P09",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Mau bergaul dengan siapa saja tanpa membedakan suku dan daerah adalah pengamalan sila ....",
+   "o": [
+    "ketiga",
+    "pertama",
+    "keempat",
+    "kelima"
+   ],
+   "m": [
+    null,
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar",
+    "PPKN-sila-pengamalan-tertukar"
+   ],
+   "e": "Bergaul tanpa membedakan suku menjaga persatuan, sesuai sila ketiga."
+  },
+  {
+   "id": "P10",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C3",
+   "q": "Saat bermusyawarah di kelas, sikap yang tepat adalah ....",
+   "o": [
+    "mendengarkan pendapat teman dengan baik",
+    "berbicara bersamaan dengan teman",
+    "pergi sebelum musyawarah selesai",
+    "mengejek pendapat yang berbeda"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Dalam musyawarah, kita mendengarkan pendapat orang lain dengan baik."
+  },
+  {
+   "id": "P11",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C2",
+   "q": "Perhatikan lambang di bawah ini. Makna lambang tersebut adalah ....<div style=\"margin-top:8px\"><svg viewBox=\"0 0 100 100\" width=\"110\" height=\"110\" role=\"img\" aria-label=\"lambang sila\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"10\" fill=\"#c62828\" stroke=\"#555\" stroke-width=\"2\"/><path d=\"M30 34 Q14 28 14 12 Q22 26 36 28 Z\" fill=\"#1f1f1f\"/><path d=\"M70 34 Q86 28 86 12 Q78 26 64 28 Z\" fill=\"#1f1f1f\"/><path d=\"M30 30 Q50 20 70 30 Q74 56 62 78 Q50 88 38 78 Q26 56 30 30 Z\" fill=\"#1f1f1f\"/><path d=\"M22 36 L32 40 L30 46 Z M78 36 L68 40 L70 46 Z\" fill=\"#1f1f1f\"/><circle cx=\"42\" cy=\"46\" r=\"3\" fill=\"#fff\"/><circle cx=\"58\" cy=\"46\" r=\"3\" fill=\"#fff\"/><ellipse cx=\"50\" cy=\"74\" rx=\"9\" ry=\"5\" fill=\"#444\"/></svg></div>",
+   "o": [
+    "rakyat berkumpul untuk bermusyawarah mengambil keputusan",
+    "kita percaya dan bertakwa kepada Tuhan Yang Maha Esa",
+    "sesama manusia saling menyayangi dan saling membantu",
+    "seluruh rakyat Indonesia bersatu dan bernaung bersama"
+   ],
+   "m": [
+    null,
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar",
+    "PPKN-lambang-sila-tertukar"
+   ],
+   "e": "Gambar itu adalah kepala banteng, lambang sila keempat. Maknanya: rakyat berkumpul untuk bermusyawarah mengambil keputusan."
+  },
+  {
+   "id": "P12",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C1",
+   "q": "Hari Lahir Pancasila diperingati setiap tanggal ....",
+   "o": [
+    "1 Juni",
+    "17 Agustus",
+    "1 Oktober",
+    "28 Oktober"
+   ],
+   "m": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "e": "Hari Lahir Pancasila diperingati setiap 1 Juni."
+  },
+  {
+   "id": "P13",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Sikap para tokoh yang dapat kita teladani adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Dalam sidang BPUPK, para tokoh bergantian menyampaikan usul dasar negara. Tokoh lain mendengarkan dengan tenang.</div>",
+   "o": [
+    "menghargai pendapat orang lain",
+    "memaksakan kehendak sendiri",
+    "tidak peduli pada usul orang lain",
+    "ingin menang sendiri"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Para perumus Pancasila saling mendengarkan usul. Kita meneladani sikap menghargai pendapat orang lain."
+  },
+  {
+   "id": "P14",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C1",
+   "q": "Para perumus Pancasila rela memberikan waktu dan tenaganya demi bangsa. Karakter ini disebut ....",
+   "o": [
+    "rela berkorban",
+    "mementingkan diri sendiri",
+    "malas bekerja",
+    "suka menyombongkan diri"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Memberikan waktu dan tenaga demi bangsa disebut rela berkorban."
+  },
+  {
+   "id": "P15",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C2",
+   "q": "Cara meneladani sikap cinta tanah air para perumus Pancasila adalah ....",
+   "o": [
+    "bangga memakai produk buatan Indonesia",
+    "mengejek budaya daerah lain",
+    "mencoret-coret gambar Garuda Pancasila",
+    "tidak mau belajar lagu nasional"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Bangga memakai produk buatan Indonesia adalah salah satu wujud cinta tanah air."
+  },
+  {
+   "id": "P16",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C3",
+   "q": "Bilal belum bisa mengerjakan soal Matematika di rumah. Sikap yang tepat adalah ....",
+   "o": [
+    "bertanya kepada orang tua atau ustazah",
+    "menyalin pekerjaan teman",
+    "merobek buku latihannya",
+    "tidak mengerjakan sama sekali"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Saat kesulitan, kita bertanya kepada orang yang lebih tahu dan terus berusaha."
+  },
+  {
+   "id": "P17",
+   "sub": "Karakter perumus Pancasila",
+   "lv": "C3",
+   "q": "Saat menghadapi kesulitan, selain terus berusaha kita juga ....",
+   "o": [
+    "berdoa kepada Allah Swt.",
+    "marah-marah kepada orang lain",
+    "menyalahkan orang lain",
+    "berhenti berusaha"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Berusaha dan berdoa adalah sikap yang tepat saat menghadapi kesulitan."
+  },
+  {
+   "id": "P18",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Aturan sekolah yang ditunjukkan gambar adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Di dinding kelas ada papan berisi nama-nama murid dan hari piket mereka masing-masing.</div>",
+   "o": [
+    "melaksanakan piket kelas sesuai jadwal",
+    "pulang sebelum bel berbunyi",
+    "makan sambil berjalan di kelas",
+    "menyimpan sampah di laci meja"
+   ],
+   "m": [
+    null,
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar"
+   ],
+   "e": "Papan jadwal piket menunjukkan aturan: setiap murid melaksanakan piket sesuai jadwalnya."
+  },
+  {
+   "id": "P19",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C1",
+   "q": "Contoh aturan di sekolah adalah ....",
+   "o": [
+    "meminta izin jika ingin keluar kelas saat pelajaran",
+    "tidur siang setelah pulang dari sekolah",
+    "bermain gim di kelas saat pelajaran berlangsung",
+    "pulang kapan saja tanpa meminta izin guru"
+   ],
+   "m": [
+    null,
+    "PPKN-rumah-sekolah-tertukar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar"
+   ],
+   "e": "Meminta izin keluar kelas adalah aturan sekolah. Tidur siang adalah aturan di rumah."
+  },
+  {
+   "id": "P20",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C2",
+   "q": "Aturan \"Kembalikan buku ke rak setelah dibaca\" berlaku di ....",
+   "o": [
+    "perpustakaan",
+    "kantin sekolah",
+    "lapangan upacara",
+    "toilet sekolah"
+   ],
+   "m": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "e": "Buku dibaca dan disimpan di rak perpustakaan."
+  },
+  {
+   "id": "P21",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C2",
+   "q": "Manfaat menaati aturan di sekolah adalah ....",
+   "o": [
+    "kegiatan belajar menjadi tertib dan nyaman",
+    "sekolah menjadi kotor dan berantakan",
+    "murid sering bertengkar di kelas",
+    "guru menjadi sering marah-marah"
+   ],
+   "m": [
+    null,
+    "PPKN-tujuan-aturan",
+    "PPKN-tujuan-aturan",
+    "PPKN-tujuan-aturan"
+   ],
+   "e": "Menaati aturan membuat kegiatan belajar tertib dan nyaman."
+  },
+  {
+   "id": "P22",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C2",
+   "q": "Manfaat menaati aturan tidak berbicara saat guru menjelaskan adalah ....",
+   "o": [
+    "murid dapat memahami pelajaran dengan baik",
+    "kelas menjadi ramai dan berisik",
+    "guru harus mengulang penjelasan terus",
+    "murid menjadi cepat mengantuk"
+   ],
+   "m": [
+    null,
+    "PPKN-tujuan-aturan",
+    "PPKN-tujuan-aturan",
+    "PPKN-tujuan-aturan"
+   ],
+   "e": "Jika semua tenang, penjelasan guru terdengar jelas dan mudah dipahami."
+  },
+  {
+   "id": "P23",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C3",
+   "q": "Raka melihat temannya mencoret-coret meja kelas. Sikap Raka yang tepat adalah ....",
+   "o": [
+    "mengingatkan temannya dengan sopan",
+    "ikut mencoret meja",
+    "membiarkannya saja",
+    "memarahi dan memukul temannya"
+   ],
+   "m": [
+    null,
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar"
+   ],
+   "e": "Teman yang melanggar aturan diingatkan dengan sopan, tidak ditiru dan tidak dipukul."
+  },
+  {
+   "id": "P24",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Kewajiban anak terhadap orang tua adalah ....",
+   "o": [
+    "patuh dan hormat kepada orang tua",
+    "mendapatkan kasih sayang",
+    "meminta mainan setiap hari",
+    "membantah nasihat orang tua"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar"
+   ],
+   "e": "Patuh dan hormat adalah kewajiban anak. Mendapat kasih sayang adalah hak anak."
+  },
+  {
+   "id": "P25",
+   "sub": "Hak dan kewajiban",
+   "lv": "C3",
+   "q": "Ayah pulang kerja dalam keadaan lelah. Sikap yang baik adalah ....",
+   "o": [
+    "menyambut dengan salam dan membawakan minum",
+    "meminta Ayah langsung bermain",
+    "mengeluh karena Ayah pulang terlambat",
+    "terus bermain gim tanpa menyapa"
+   ],
+   "m": [
+    null,
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-melanggar-dianggap-benar"
+   ],
+   "e": "Anak yang baik menyambut orang tua dengan salam dan membantu mereka."
+  },
+  {
+   "id": "P26",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Contoh kewajiban anak di rumah adalah ....",
+   "o": [
+    "merapikan mainan setelah bermain",
+    "mendapatkan uang jajan",
+    "mendapatkan tempat tidur",
+    "mengikuti upacara bendera"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-rumah-sekolah-tertukar"
+   ],
+   "e": "Merapikan mainan adalah kewajiban anak di rumah."
+  },
+  {
+   "id": "P27",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Hak anak di sekolah adalah ....",
+   "o": [
+    "mendapatkan pelajaran dari guru",
+    "menyapu kelas saat piket",
+    "menaati tata tertib sekolah",
+    "mendapatkan makan malam dari orang tua"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-rumah-sekolah-tertukar"
+   ],
+   "e": "Mendapatkan pelajaran dari guru adalah hak murid. Menyapu kelas dan menaati tata tertib adalah kewajiban."
+  },
+  {
+   "id": "P28",
+   "sub": "Hak dan kewajiban",
+   "lv": "C2",
+   "q": "Murid yang tiba-tiba sakit saat di sekolah berhak ....",
+   "o": [
+    "mendapatkan pertolongan di UKS",
+    "dimarahi karena sakit",
+    "disuruh pulang sendirian",
+    "tetap mengikuti olahraga"
+   ],
+   "m": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "e": "Murid yang sakit berhak mendapat pertolongan di UKS."
+  },
+  {
+   "id": "P29",
+   "sub": "Hak dan kewajiban",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Kewajiban murid yang ditunjukkan gambar adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Pagi hari, murid-murid memberi salam dan mencium tangan ustazah di depan gerbang sekolah.</div>",
+   "o": [
+    "menghormati guru",
+    "mendapat pelajaran dari guru",
+    "bermain di halaman",
+    "menggunakan fasilitas sekolah"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar"
+   ],
+   "e": "Memberi salam dan mencium tangan guru adalah wujud kewajiban menghormati guru."
+  },
+  {
+   "id": "P30",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Kewajiban seorang murid di sekolah adalah ....",
+   "o": [
+    "belajar dengan sungguh-sungguh",
+    "mendapat nilai dari guru",
+    "bermain sepanjang hari",
+    "membantu Ayah mencuci mobil"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-rumah-sekolah-tertukar"
+   ],
+   "e": "Belajar dengan sungguh-sungguh adalah kewajiban murid."
+  },
+  {
+   "id": "P31",
+   "sub": "Hak dan kewajiban",
+   "lv": "C3",
+   "q": "Bunda meminta Dita menyiram bunga di teras setiap sore. Sikap tanggung jawab Dita adalah ....",
+   "o": [
+    "menyiram bunga setiap sore tanpa disuruh lagi",
+    "menyiram hanya jika sedang ingin",
+    "menyuruh adik menggantikannya terus",
+    "pura-pura lupa setiap hari"
+   ],
+   "m": [
+    null,
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik",
+    "PPKN-sikap-keliru-dianggap-baik"
+   ],
+   "e": "Bertanggung jawab berarti mengerjakan tugas yang diberikan dengan sungguh-sungguh."
+  },
+  {
+   "id": "P32",
+   "sub": "Hak dan kewajiban",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Kewajiban anak di rumah yang ditunjukkan gambar adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Pada hari Ahad, Raka menyapu halaman rumah bersama Ayah.</div>",
+   "o": [
+    "membantu membersihkan rumah",
+    "mendapatkan tempat tinggal",
+    "bermain di halaman",
+    "mendapatkan perhatian Ayah"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-melanggar-dianggap-benar",
+    "PPKN-hak-kewajiban-tertukar"
+   ],
+   "e": "Menyapu halaman bersama Ayah adalah kewajiban membantu membersihkan rumah."
+  },
+  {
+   "id": "P33",
+   "sub": "Hak dan kewajiban",
+   "lv": "C2",
+   "q": "Perhatikan gambar. Hak anak di rumah yang ditunjukkan gambar adalah ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Saat Bilal demam, Ayah mengantarnya berobat ke dokter.</div>",
+   "o": [
+    "mendapatkan perawatan kesehatan",
+    "merawat orang tua yang sakit",
+    "membantu pekerjaan Ayah",
+    "mendapatkan pertolongan di UKS"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-rumah-sekolah-tertukar"
+   ],
+   "e": "Anak berhak mendapatkan perawatan saat sakit dari orang tuanya."
+  },
+  {
+   "id": "P34",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Ustazah membimbing murid yang belum lancar membaca. Murid itu mendapatkan haknya, yaitu ....",
+   "o": [
+    "mendapat bimbingan dari guru",
+    "menjaga kebersihan kelas",
+    "mengikuti upacara bendera",
+    "mendapat kasih sayang orang tua"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-hak-kewajiban-tertukar",
+    "PPKN-rumah-sekolah-tertukar"
+   ],
+   "e": "Mendapat bimbingan guru adalah hak murid."
+  },
+  {
+   "id": "P35",
+   "sub": "Hak dan kewajiban",
+   "lv": "C2",
+   "q": "Mendapatkan pendidikan termasuk hak anak, sedangkan belajar dengan rajin termasuk ....",
+   "o": [
+    "kewajiban anak",
+    "hak anak",
+    "hadiah untuk anak",
+    "hukuman untuk anak"
+   ],
+   "m": [
+    null,
+    "PPKN-hak-kewajiban-tertukar",
+    null,
+    "PPKN-tujuan-aturan"
+   ],
+   "e": "Belajar dengan rajin adalah kewajiban. Pendidikan yang kita dapat adalah hak."
+  }
+ ],
+ "isian": [
+  {
+   "id": "I36",
+   "sub": "Lambang dan bunyi sila Pancasila",
+   "lv": "C1",
+   "q": "Perhatikan lambang ini. Lengkapi bunyi sila yang dilambangkan oleh gambar tersebut: \"Keadilan .... bagi seluruh rakyat Indonesia\"<div style=\"margin-top:8px\"><svg viewBox=\"0 0 100 100\" width=\"110\" height=\"110\" role=\"img\" aria-label=\"lambang sila\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"10\" fill=\"#ffffff\" stroke=\"#555\" stroke-width=\"2\"/><path d=\"M30 16 L30 90\" stroke=\"#a1887f\" stroke-width=\"2\"/><ellipse cx=\"25\" cy=\"20\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"35\" cy=\"28\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"25\" cy=\"36\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"35\" cy=\"44\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"25\" cy=\"52\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"35\" cy=\"60\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"25\" cy=\"68\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><ellipse cx=\"35\" cy=\"76\" rx=\"5\" ry=\"3.5\" fill=\"#e6b800\"/><path d=\"M70 16 L70 92\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"70\" cy=\"20\" r=\"6\" fill=\"#fff\" stroke=\"#9e9e9e\"/><path d=\"M64 26 L76 26\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"70\" cy=\"35\" r=\"6\" fill=\"#fff\" stroke=\"#9e9e9e\"/><path d=\"M64 41 L76 41\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"70\" cy=\"50\" r=\"6\" fill=\"#fff\" stroke=\"#9e9e9e\"/><path d=\"M64 56 L76 56\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"70\" cy=\"65\" r=\"6\" fill=\"#fff\" stroke=\"#9e9e9e\"/><path d=\"M64 71 L76 71\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"70\" cy=\"80\" r=\"6\" fill=\"#fff\" stroke=\"#9e9e9e\"/><path d=\"M64 86 L76 86\" stroke=\"#4caf50\" stroke-width=\"2\"/></svg></div>",
+   "a": "sosial",
+   "e": "Gambar itu adalah padi dan kapas, lambang sila kelima: \"Keadilan sosial bagi seluruh rakyat Indonesia\".",
+   "k": [
+    "sosial"
+   ],
+   "w": {
+    "kesejahteraan": "PPKN-lambang-sila-tertukar"
+   }
+  },
+  {
+   "id": "I37",
+   "sub": "Pengamalan sila Pancasila",
+   "lv": "C3",
+   "q": "Perhatikan gambar. Musyawarah keluarga pada gambar adalah pengamalan sila ke-.... Pancasila. (tulis angkanya)<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Ayah, Bunda, dan anak-anak duduk bersama. Setiap orang menyampaikan usul tempat liburan, lalu mereka memutuskan bersama.</div>",
+   "a": "4",
+   "e": "Musyawarah adalah pengamalan sila keempat: Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan.",
+   "n": 4
+  },
+  {
+   "id": "I38",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C3",
+   "q": "Perhatikan gambar. Akibat tidak menaati aturan tidur tepat waktu, esok pagi Raka bangun ....<div style=\"margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--warn-soft);border:1px dashed var(--sun)\">🖼️ <b>Gambar:</b> Raka bermain gim di kamar sampai larut malam, padahal besok harus sekolah.</div>",
+   "a": "kesiangan",
+   "e": "Tidur larut malam membuat kita bangun kesiangan dan terlambat ke sekolah.",
+   "k": [
+    "kesiangan",
+    "terlambat",
+    "telat",
+    "siang",
+    "kesiangan dan terlambat"
+   ]
+  },
+  {
+   "id": "I39",
+   "sub": "Aturan di sekolah dan di rumah",
+   "lv": "C1",
+   "q": "Aturan sekolah: murid harus datang ke sekolah tepat ....",
+   "a": "waktu",
+   "e": "Salah satu aturan sekolah adalah datang tepat waktu.",
+   "k": [
+    "waktu",
+    "pada waktunya"
+   ]
+  },
+  {
+   "id": "I40",
+   "sub": "Hak dan kewajiban",
+   "lv": "C1",
+   "q": "Jika orang tua memanggil kita, kewajiban kita adalah segera .... panggilannya dengan sopan.",
+   "a": "menjawab",
+   "e": "Anak wajib segera menjawab panggilan orang tua dengan sopan.",
+   "k": [
+    "menjawab",
+    "menyahut",
+    "menjawabnya",
+    "menyahutnya",
+    "memenuhi",
+    "mendatangi"
+   ],
+   "w": {
+    "mengabaikan": "PPKN-melanggar-dianggap-benar"
+   }
+  }
+ ]
+}

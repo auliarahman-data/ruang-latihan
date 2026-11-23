@@ -1,5 +1,5 @@
 /* Service worker Ruang Latihan: halaman dan paket tetap bisa dibuka saat internet putus. */
-var CACHE = "rl-v4";
+var CACHE = "rl-v5";
 var CORE = ["./", "index.html", "config.js", "manifest.webmanifest", "icon-180.png", "icon-512.png", "paket/daftar.json"];
 
 self.addEventListener("install", function (e) {
