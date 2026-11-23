@@ -1,0 +1,577 @@
+{
+ "id": "UAS-ARB-P3",
+ "mapel": "Bahasa Arab",
+ "kelas": 3,
+ "folder": "Latihan UAS",
+ "bab": "UAS",
+ "judulBab": "Latihan UAS Semester 1",
+ "paket": 3,
+ "sumber": "Kisi-kisi ASAS Semester 1 (25 PG + 5 uraian); Buku Pelajaran Bahasa Arab Kelas 3 hal 4-9, 20-23, 40-41",
+ "dibuat": "2026-11-23",
+ "uji": false,
+ "mk": {
+  "ARB-buah-tertukar": "Nama buah tertukar",
+  "ARB-harakat-mirip": "Kata yang hanya beda harakat tertukar (مَنْ siapa / مِنْ dari)",
+  "ARB-huruf-mirip": "Kata yang hurufnya mirip tertukar (بِنْتٌ / بَيْتٌ)",
+  "ARB-kata-ganti-gender": "Kata ganti laki-laki dan perempuan tertukar (هُوَ/هِيَ, أَنْتَ/أَنْتِ, إِبْنٌ/بِنْتٌ)",
+  "ARB-kata-ganti-orang": "Kata ganti orang tertukar (saya, kami, kamu, dia)",
+  "ARB-kata-tanya-tertukar": "Kata tanya tertukar (siapa, dari, di mana)",
+  "ARB-keluarga-tertukar": "Nama anggota keluarga tertukar",
+  "ARB-kosakata-tertukar": "Arti kosakata tertukar dengan kata lain",
+  "ARB-muzakkar-muannas": "Muzakkar (laki-laki) dan muannas (perempuan) tertukar",
+  "ARB-tunjuk-ini-itu": "Kata tunjuk 'ini' dan 'itu' tertukar",
+  "ARB-tunjuk-tunggal-jamak": "Kata tunjuk untuk satu dan banyak (mereka) tertukar",
+  "ARB-urutan-huruf": "Huruf disusun menjadi kata yang salah"
+ },
+ "pg": [
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C1",
+   "q": "Bahasa Arab dari \"ini (untuk perempuan)\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُولٰٓئِكَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-muzakkar-muannas",
+    "ARB-tunjuk-ini-itu",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "\"Ini (untuk perempuan)\" dalam bahasa Arab adalah <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ</span>.",
+   "id": "P01"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C1",
+   "q": "Bahasa Arab dari \"dia (laki-laki)\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هُوَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هِيَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنْتَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا</span>"
+   ],
+   "m": [
+    null,
+    "ARB-kata-ganti-gender",
+    "ARB-kata-ganti-orang",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "\"Dia (laki-laki)\" dalam bahasa Arab adalah <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هُوَ</span>.",
+   "id": "P02"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Bahasa Arab dari \"mereka ini dan mereka itu\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰؤُلَاءِ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُولٰٓئِكَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُولٰٓئِكَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰؤُلَاءِ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُولٰٓئِكَ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-tunjuk-tunggal-jamak",
+    "ARB-tunjuk-ini-itu",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "Mereka ini = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰؤُلَاءِ</span>, mereka itu = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُولٰٓئِكَ</span>.",
+   "id": "P03"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C1",
+   "q": "Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هِيَ</span> artinya ....",
+   "o": [
+    "dia (perempuan)",
+    "dia (laki-laki)",
+    "kamu (perempuan)",
+    "mereka ini"
+   ],
+   "m": [
+    null,
+    "ARB-kata-ganti-gender",
+    "ARB-kata-ganti-orang",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هِيَ</span> artinya dia (perempuan).",
+   "id": "P04"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِسْمٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَيْنَ</span> berturut-turut adalah ....",
+   "o": [
+    "nama dan di mana",
+    "siapa dan di mana",
+    "nama dan siapa",
+    "dari dan di mana"
+   ],
+   "m": [
+    null,
+    "ARB-kosakata-tertukar",
+    "ARB-kata-tanya-tertukar",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِسْمٌ</span> = nama, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَيْنَ</span> = di mana.",
+   "id": "P05"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَا</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">مِنْ</span> berturut-turut adalah ....",
+   "o": [
+    "saya dan dari",
+    "kami dan dari",
+    "saya dan siapa",
+    "kamu (laki-laki) dan dari"
+   ],
+   "m": [
+    null,
+    "ARB-kata-ganti-orang",
+    "ARB-harakat-mirip",
+    "ARB-kata-ganti-orang"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَا</span> = saya, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">مِنْ</span> = dari.",
+   "id": "P06"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Kalimat: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا رَشِيْدٌ هُوَ صَاحِبِيْ</span><br>Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا</span> pada kalimat itu artinya ....",
+   "o": [
+    "ini (untuk laki-laki)",
+    "itu (untuk laki-laki)",
+    "mereka ini",
+    "siapa"
+   ],
+   "m": [
+    null,
+    "ARB-tunjuk-ini-itu",
+    "ARB-tunjuk-tunggal-jamak",
+    "ARB-kosakata-tertukar"
+   ],
+   "e": "Pada kalimat <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا رَشِيْدٌ هُوَ صَاحِبِيْ</span>, kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا</span> artinya ini (untuk laki-laki).",
+   "id": "P07"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Kalimat: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">نَحْنُ مِنْ مَكَّةَ</span><br>Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">نَحْنُ</span> pada kalimat itu artinya ....",
+   "o": [
+    "kami",
+    "saya",
+    "kamu (laki-laki)",
+    "mereka itu"
+   ],
+   "m": [
+    null,
+    "ARB-kata-ganti-orang",
+    "ARB-kata-ganti-orang",
+    "ARB-kata-ganti-orang"
+   ],
+   "e": "Pada kalimat <span class=\"ar\" lang=\"ar\" dir=\"rtl\">نَحْنُ مِنْ مَكَّةَ</span>, kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">نَحْنُ</span> artinya kami.",
+   "id": "P08"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">س إ م</span> jika disusun menjadi kata ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِسْمٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">صَاحِبِيْ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَهْلًا</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰؤُلَاءِ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf"
+   ],
+   "e": "Huruf-huruf itu disusun menjadi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِسْمٌ</span> (nama).",
+   "id": "P09"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أ ا ل ه</span> jika disusun menjadi kata ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَهْلًا</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَكَّةَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنْتَ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf"
+   ],
+   "e": "Huruf-huruf itu disusun menjadi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَهْلًا</span> (seperti pada <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَهْلًا وَسَهْلًا</span>).",
+   "id": "P10"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C1",
+   "q": "Bahasa Arab dari \"saudara (laki-laki)\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَخٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُخْتٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِبْنٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ذٰلِكَ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-muzakkar-muannas",
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "\"Saudara (laki-laki)\" dalam bahasa Arab adalah <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَخٌ</span>.",
+   "id": "P11"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Bahasa Arab dari \"kakek dan nenek\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدٌّ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدٌّ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بِنْتٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "Kakek = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدٌّ</span>, nenek = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span>.",
+   "id": "P12"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Bahasa Arab dari \"ayah dan ibu\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدٌّ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمَّةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمَّةٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "Ayah = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبٌ</span>, ibu = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span>.",
+   "id": "P13"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C1",
+   "q": "Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُسْرَةٌ</span> artinya ....",
+   "o": [
+    "keluarga",
+    "rumah",
+    "ayah",
+    "itu (untuk perempuan)"
+   ],
+   "m": [
+    null,
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُسْرَةٌ</span> artinya keluarga.",
+   "id": "P14"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمَّةٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُخْتٌ</span> berturut-turut adalah ....",
+   "o": [
+    "bibi dan saudari (perempuan)",
+    "paman dan saudari (perempuan)",
+    "bibi dan saudara (laki-laki)",
+    "nenek dan saudari (perempuan)"
+   ],
+   "m": [
+    null,
+    "ARB-muzakkar-muannas",
+    "ARB-muzakkar-muannas",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمَّةٌ</span> = bibi, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُخْتٌ</span> = saudari (perempuan).",
+   "id": "P15"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمٌّ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَيْتٌ</span> berturut-turut adalah ....",
+   "o": [
+    "paman dan rumah",
+    "bibi dan rumah",
+    "paman dan anak (perempuan)",
+    "ayah dan rumah"
+   ],
+   "m": [
+    null,
+    "ARB-muzakkar-muannas",
+    "ARB-huruf-mirip",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمٌّ</span> = paman, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَيْتٌ</span> = rumah.",
+   "id": "P16"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Kalimat: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ بِنْتٌ</span><br>Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بِنْتٌ</span> pada kalimat itu artinya ....",
+   "o": [
+    "anak (perempuan)",
+    "rumah",
+    "anak (laki-laki)",
+    "saudari (perempuan)"
+   ],
+   "m": [
+    null,
+    "ARB-huruf-mirip",
+    "ARB-muzakkar-muannas",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "Pada kalimat <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ بِنْتٌ</span>, kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بِنْتٌ</span> artinya anak (perempuan).",
+   "id": "P17"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Kalimat: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا إِبْنٌ</span><br>Kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِبْنٌ</span> pada kalimat itu artinya ....",
+   "o": [
+    "anak (laki-laki)",
+    "anak (perempuan)",
+    "saudara (laki-laki)",
+    "ayah"
+   ],
+   "m": [
+    null,
+    "ARB-muzakkar-muannas",
+    "ARB-keluarga-tertukar",
+    "ARB-keluarga-tertukar"
+   ],
+   "e": "Pada kalimat <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذَا إِبْنٌ</span>, kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِبْنٌ</span> artinya anak (laki-laki).",
+   "id": "P18"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">د ة ج</span> jika disusun menjadi kata ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بِنْتٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">إِبْنٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَخٌ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf"
+   ],
+   "e": "Huruf-huruf itu disusun menjadi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">جَدَّةٌ</span> (nenek).",
+   "id": "P19"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Huruf <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ل ك ذ</span> jika disusun menjadi kata ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">ذٰلِكَ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَيْتٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بِنْتٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عَمَّةٌ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf",
+    "ARB-urutan-huruf"
+   ],
+   "e": "Huruf-huruf itu disusun menjadi <span class=\"ar\" lang=\"ar\" dir=\"rtl\">ذٰلِكَ</span> (itu (untuk laki-laki)).",
+   "id": "P20"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C1",
+   "q": "Bahasa Arab dari \"jeruk\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بُرْتُقَالُ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عِنَبٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">تُفَّاحَةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَانَاسٌ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar"
+   ],
+   "e": "\"Jeruk\" dalam bahasa Arab adalah <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بُرْتُقَالُ</span>.",
+   "id": "P21"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C2",
+   "q": "Bahasa Arab dari \"stroberi dan apel\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">فَرَاوِلَةٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">تُفَّاحَةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَانَاسٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">تُفَّاحَةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">فَرَاوِلَةٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَانَاسٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَابَايَا</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بُرْتُقَالُ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar"
+   ],
+   "e": "Stroberi = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">فَرَاوِلَةٌ</span>, apel = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">تُفَّاحَةٌ</span>.",
+   "id": "P22"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C2",
+   "q": "Bahasa Arab dari \"anggur dan alpukat\" adalah ....",
+   "o": [
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عِنَبٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَفُوْكَادُ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَابَايَا</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَفُوْكَادُ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">عِنَبٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">فَرَاوِلَةٌ</span>",
+    "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">تُفَّاحَةٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">فَرَاوِلَةٌ</span>"
+   ],
+   "m": [
+    null,
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar"
+   ],
+   "e": "Anggur = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">عِنَبٌ</span>, alpukat = <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَفُوْكَادُ</span>.",
+   "id": "P23"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَوْزٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبُوْ شَوْكٍ</span> berturut-turut adalah ....",
+   "o": [
+    "pisang dan durian",
+    "pepaya dan durian",
+    "pisang dan alpukat",
+    "mangga dan anggur"
+   ],
+   "m": [
+    null,
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَوْزٌ</span> = pisang, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَبُوْ شَوْكٍ</span> = durian.",
+   "id": "P24"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C2",
+   "q": "Arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْجَا</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَابَايَا</span> berturut-turut adalah ....",
+   "o": [
+    "mangga dan pepaya",
+    "semangka dan pepaya",
+    "mangga dan pisang",
+    "pisang dan semangka"
+   ],
+   "m": [
+    null,
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar",
+    "ARB-buah-tertukar"
+   ],
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْجَا</span> = mangga, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">بَابَايَا</span> = pepaya.",
+   "id": "P25"
+  }
+ ],
+ "isian": [
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C1",
+   "q": "Tulis arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">صَاحِبِيْ</span> dalam bahasa Indonesia.",
+   "k": [
+    "temanku",
+    "teman saya",
+    "sahabatku",
+    "sahabat saya",
+    "teman ku"
+   ],
+   "a": "temanku",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">صَاحِبِيْ</span> artinya temanku.",
+   "w": {
+    "namaku": "ARB-kosakata-tertukar"
+   },
+   "id": "I26"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C1",
+   "q": "Tulis arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span> dalam bahasa Indonesia.",
+   "k": [
+    "ibu",
+    "bunda",
+    "mama"
+   ],
+   "a": "ibu",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span> artinya ibu.",
+   "w": {
+    "ayah": "ARB-muzakkar-muannas",
+    "nenek": "ARB-keluarga-tertukar"
+   },
+   "id": "I27"
+  },
+  {
+   "sub": "Nama buah",
+   "lv": "C2",
+   "q": "Tulis arti kata <span class=\"ar\" lang=\"ar\" dir=\"rtl\">تَمْرٌ</span> dan <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَانَاسٌ</span> dalam bahasa Indonesia.",
+   "k": [
+    "kurma dan nanas",
+    "kurma nanas"
+   ],
+   "a": "kurma dan nanas",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">تَمْرٌ</span> = kurma, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنَانَاسٌ</span> = nanas.",
+   "id": "I28"
+  },
+  {
+   "sub": "Perkenalan diri",
+   "lv": "C2",
+   "q": "Terjemahkan ke dalam bahasa Indonesia: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْ أَنْتَ؟</span>",
+   "k": [
+    "siapa kamu",
+    "kamu siapa",
+    "siapakah kamu",
+    "siapa anda"
+   ],
+   "a": "siapa kamu",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">مَنْ</span> = siapa, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أَنْتَ</span> = kamu (laki-laki). Artinya: Siapa kamu?",
+   "id": "I29"
+  },
+  {
+   "sub": "Anggota keluarga",
+   "lv": "C2",
+   "q": "Terjemahkan ke dalam bahasa Indonesia: <span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ أُمٌّ</span>",
+   "k": [
+    "ini ibu"
+   ],
+   "a": "ini ibu",
+   "e": "<span class=\"ar\" lang=\"ar\" dir=\"rtl\">هٰذِهِ</span> = ini, <span class=\"ar\" lang=\"ar\" dir=\"rtl\">أُمٌّ</span> = ibu. Artinya: Ini ibu.",
+   "id": "I30"
+  }
+ ]
+}
